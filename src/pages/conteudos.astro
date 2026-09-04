@@ -1,0 +1,37 @@
+---
+/**
+ * CONTEÚDOS (blog) — placeholder honesto (04/09).
+ * Já existia link no NAV_PRINCIPAL/Footer apontando pra /conteudos, mas a
+ * página nunca foi construída — link quebrado real, corrigido aqui.
+ * Conteúdo de verdade depende de decisão de formato (vitrine do Instagram
+ * vs. artigos próprios) e integração com o radar editorial GRANVIC
+ * (motor-ajas, Notion) — tratada em rodada própria, fora do escopo desta
+ * página. Ver PENDENCIAS.md.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABlock from '../components/CTABlock.astro';
+---
+
+<BaseLayout
+  titulo="Conteúdos"
+  descricao="Conteúdo sobre planejamento patrimonial, construção de ativos e o papel do consórcio na estratégia. Em breve."
+>
+  <section class="container-site pt-20 pb-20 md:pt-28 md:pb-28">
+    <div class="max-w-2xl">
+      <p class="text-xs md:text-sm uppercase tracking-[0.2em] text-ouro font-semibold">Conteúdos</p>
+      <h1 class="mt-5 font-display font-medium text-3xl md:text-5xl leading-[1.1] text-petroleo text-balance">
+        Estamos preparando este espaço.
+      </h1>
+      <p class="mt-7 text-lg text-petroleo-soft leading-relaxed">
+        Aqui vão viver os textos sobre planejamento patrimonial, construção de ativos e o papel do consórcio na estratégia — enquanto isso não sai, acompanhe a GRANVIC no Instagram.
+      </p>
+    </div>
+  </section>
+
+  <CTABlock
+    titulo="Enquanto isso, fale direto com a gente."
+    ctaPrimarioLabel="Falar com um especialista"
+    ctaSecundarioLabel="Voltar para a home"
+    ctaSecundarioHref="/"
+  />
+</BaseLayout>

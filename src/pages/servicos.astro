@@ -1,0 +1,132 @@
+---
+/**
+ * SERVIÇOS — página nova (04/09, pedido do gestor). Diferente de Soluções
+ * (que é "o que você quer conquistar" — a compra de um bem), esta página é
+ * sobre o que mais entra no plano depois do primeiro objetivo.
+ *
+ * Conteúdo real, sourced (não inventado):
+ * - Energia Solar: existe como produto (Canopus, exclusivo no portfólio —
+ *   CONSELHO_ESTRATEGICO_ATO_04.md) e aparece na sequência documentada da
+ *   jornada patrimonial: "Primeiro imóvel → Reforma → Energia solar →
+ *   Imóvel para renda..." (CONSELHO_ESTRATEGICO_ATO_03.md). Por isso o
+ *   ângulo da página é "o que vem depois da casa própria", não um produto
+ *   isolado.
+ * - ⚠️ G-09 (DECISOES_ESTRATEGICAS.md): "Energia Solar fora — o UG-006 não
+ *   mapeou alternativas de mercado para ela." Por isso esta página NÃO usa
+ *   a linguagem de comparação ("comparamos as formas de aquisição") que as
+ *   páginas de Solução usam — seria prometer um mecanismo que não existe
+ *   pra essa vertical. CTA secundário aponta para o método, não para /simulacao.
+ * - Nenhuma administradora nomeada, nenhuma taxa/comissão citada (nenhum
+ *   produto GRANVIC tem status APROVADO em MASTER_PRODUTOS_GRANVIC.md).
+ * - Categorias de mercado (04/09, pedido do gestor: "busque o que tem de
+ *   vendas de consórcio no mercado"): listadas as categorias PADRÃO do
+ *   mercado brasileiro de consórcio que ainda não têm página própria no
+ *   site (as 5 já cobertas — Imóveis/Veículos/Pesados/Agro/Empresarial —
+ *   não se repetem aqui). São categorias GERAIS do mercado, não produtos
+ *   GRANVIC aprovados — por isso a apresentação é "o mercado cobre estas
+ *   categorias", nunca "a GRANVIC vende X". Nenhuma delas tem
+ *   dor/promessa/benefício desenvolvido no acervo da GRANVIC (confirmado
+ *   por busca) — por isso ficam em lista, não em card completo.
+ * Cena de imagem é PROPOSTA (não vem da §9 oficial, que só cobre as 5
+ * soluções originais) — a confirmar com o gestor.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABlock from '../components/CTABlock.astro';
+import { whatsappLink, WHATSAPP } from '../config/site';
+
+const humano = whatsappLink(WHATSAPP.mensagens.solucao) ?? '/contato';
+
+// Categorias padrão do mercado de consórcio (Bacen/ABAC) sem página própria
+// no site. Mercado geral — não são produtos GRANVIC aprovados.
+const categoriasMercado = [
+  'Serviços — viagens, formaturas, eventos, procedimentos',
+  'Eletroeletrônicos e informática',
+  'Náutico — embarcações',
+  'Aeronaves',
+  'Máquinas e equipamentos industriais',
+  'Capital de giro para empresas',
+];
+---
+
+<BaseLayout
+  titulo="Serviços — Além do primeiro objetivo | GRANVIC"
+  descricao="O patrimônio não para no primeiro objetivo. Energia solar e outros ativos entram no plano conforme ele evolui."
+>
+  <!-- Hero + Problema (fundidos, mesmo padrão das Soluções) -->
+  <section class="relative min-h-[52vh] flex items-end overflow-hidden text-offwhite">
+    <div class="absolute inset-0" style="background:
+      radial-gradient(90% 70% at 74% 12%, rgba(150,126,89,.42), transparent 55%),
+      radial-gradient(120% 120% at 15% 110%, rgba(9,28,40,.95), transparent 60%),
+      linear-gradient(120deg,#1b4a5e,#0f2d3e 70%);"></div>
+    <div class="absolute inset-x-0 bottom-0 h-2/3" style="background:linear-gradient(180deg,transparent,rgba(9,28,40,.85))"></div>
+    <div class="container-site relative pb-14 md:pb-20 pt-24">
+      <p class="text-xs md:text-sm uppercase tracking-[0.2em] text-ouro font-semibold">Serviços</p>
+      <h1 class="mt-4 font-display font-medium text-3xl md:text-5xl leading-[1.08] max-w-3xl text-balance">
+        O plano não termina no primeiro objetivo.
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg text-offwhite/75 leading-relaxed">
+        Depois da casa própria vem a reforma, a energia solar, o imóvel de renda — cada conquista abre espaço para a próxima. Estes são outros ativos que entram no plano conforme ele evolui.
+      </p>
+    </div>
+  </section>
+
+  <!-- Energia Solar (flagship real da página) -->
+  <section class="border-t border-linha bg-[#efe8db]/50">
+    <div class="container-site py-16 md:py-24">
+      <div class="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-start">
+        <div>
+          <hr class="fio-ouro mb-6" />
+          <h2 class="font-display text-2xl md:text-3xl font-medium text-petroleo text-balance">
+            Tem energia que é conta todo mês. Tem energia que é patrimônio.
+          </h2>
+          <div class="mt-5 space-y-4 text-lg text-petroleo-soft leading-relaxed">
+            <p>A conta de energia é uma despesa que se repete todo mês, para sempre. Transformá-la em ativo é uma decisão patrimonial como qualquer outra — só que raramente é tratada como uma.</p>
+            <p>Energia solar não é só economia mensal. É a conta que vira patrimônio, dentro do mesmo plano que já está construindo o resto do seu patrimônio.</p>
+          </div>
+          <div class="mt-8 rounded-2xl border border-linha bg-white/40 p-6">
+            <p class="text-xs uppercase tracking-[0.14em] font-semibold text-ouro">Como entra no plano</p>
+            <p class="mt-2 text-[15px] leading-relaxed text-petroleo">
+              Avaliamos o que a conta de energia representa no seu orçamento hoje e como a instalação se encaixa na ordem do seu plano — ao lado dos outros objetivos que você já está construindo.
+            </p>
+          </div>
+        </div>
+        <div class="relative aspect-[4/3] overflow-hidden rounded-2xl" style="background:
+          radial-gradient(85% 70% at 78% 10%, rgba(150,126,89,.4), transparent 55%),
+          radial-gradient(120% 120% at 10% 115%, rgba(9,28,40,.95), transparent 62%),
+          linear-gradient(125deg,#1b4a5e,#0f2d3e 72%);">
+          <span class="absolute right-2.5 top-2.5 rounded-full bg-black/25 px-2.5 py-1 text-[9px] uppercase tracking-wider text-offwhite/80 border border-offwhite/15">
+            Imagem a produzir
+          </span>
+          <span class="absolute inset-x-3 bottom-2.5 text-[10.5px] leading-snug text-ouro/90">
+            painéis solares sendo instalados no telhado de casa — cena proposta, a confirmar
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categorias do mercado de consórcio -->
+  <section class="container-site py-16 md:py-20">
+    <div class="max-w-2xl">
+      <hr class="fio-ouro mb-6" />
+      <h2 class="font-display text-2xl md:text-3xl font-medium text-petroleo">O mercado de consórcio vai além do que você imagina.</h2>
+      <p class="mt-5 text-lg text-petroleo-soft leading-relaxed">
+        Fora os objetivos que já têm plano detalhado com a gente, o mercado cobre outras categorias. Cada uma tem uma lógica própria — preferimos entender o seu caso a generalizar.
+      </p>
+    </div>
+    <ul class="mt-8 flex flex-wrap gap-3 max-w-4xl">
+      {categoriasMercado.map((c) => (
+        <li class="rounded-full border border-linha bg-white/50 px-5 py-2.5 text-sm text-petroleo">{c}</li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- CTA (secundário aponta para o método, não para /simulacao — energia solar não tem comparador mapeado) -->
+  <CTABlock
+    titulo="Fale sobre o seu próximo objetivo."
+    ctaPrimarioLabel="Falar com um especialista"
+    ctaPrimarioHref={humano}
+    ctaSecundarioLabel="Conhecer o método"
+    ctaSecundarioHref="/planejamento-patrimonial"
+  />
+</BaseLayout>

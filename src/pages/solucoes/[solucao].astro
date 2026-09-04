@@ -1,0 +1,120 @@
+---
+/**
+ * Página de solução (dinâmica) — PÁGINA 03 · VERSÃO CURTA (13/08).
+ * 4 seções: Hero+Problema (fundidos) → Objetivos+Promessa (fundidos) →
+ *           Como funciona+Benefícios+Dúvidas (fundidos) → CTA.
+ * Copy oficial via src/data/solucoes.ts.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTABlock from '../../components/CTABlock.astro';
+import Acordeao from '../../components/Acordeao.astro';
+import { solucoes } from '../../data/solucoes';
+import { whatsappLink, WHATSAPP } from '../../config/site';
+
+export function getStaticPaths() {
+  return solucoes.map((s) => ({ params: { solucao: s.slug }, props: { s } }));
+}
+
+const { s } = Astro.props;
+const humano = whatsappLink(WHATSAPP.mensagens.solucao) ?? '/contato';
+
+// Padrão: primário = falar com especialista (humano), secundário = comparar.
+// Veículos inverte (s.ctaSecundarioLabel definido): primário = comparar,
+// secundário = falar com especialista.
+const ctaPrimario = { label: s.ctaHumano, href: s.ctaSecundarioLabel ? '/simulacao' : humano };
+const ctaSecundario = s.ctaSecundarioLabel
+  ? { label: s.ctaSecundarioLabel, href: humano }
+  : { label: 'Comparar as formas de aquisição', href: '/simulacao' };
+---
+
+<BaseLayout titulo={s.seoTitle} descricao={s.seoDesc}>
+  <!-- Hero com imagem (placeholder atmosférico — a foto da cena §9 entra no lugar) -->
+  <section class="relative min-h-[68vh] flex items-end overflow-hidden text-offwhite">
+    <div class="absolute inset-0" style="background:
+      radial-gradient(90% 70% at 74% 12%, rgba(150,126,89,.42), transparent 55%),
+      radial-gradient(120% 120% at 15% 110%, rgba(9,28,40,.95), transparent 60%),
+      linear-gradient(120deg,#1b4a5e,#0f2d3e 70%);"></div>
+    <div class="absolute inset-x-0 bottom-0 h-2/3" style="background:linear-gradient(180deg,transparent,rgba(9,28,40,.85))"></div>
+    <div class="absolute right-4 top-4 md:right-6 md:top-6 rounded-full bg-black/25 px-4 py-2 text-[11px] text-offwhite/85 border border-offwhite/15">
+      Imagem a produzir · <span class="text-ouro">{s.cenaImagem}</span>
+    </div>
+    <div class="container-site relative pb-14 md:pb-20 pt-28">
+      <nav class="text-sm text-offwhite/70 mb-5" aria-label="Trilha">
+        <a href="/solucoes" class="hover:text-offwhite">Soluções</a> <span class="text-ouro">/</span> {s.nome}
+      </nav>
+      <h1 class="font-display font-medium text-3xl md:text-5xl leading-[1.08] max-w-3xl text-balance">{s.h1}</h1>
+      <div class="mt-6 max-w-2xl space-y-3 text-lg text-offwhite/75 leading-relaxed">
+        {s.problema.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Objetivos + Promessa -->
+  <section class="border-t border-linha bg-[#efe8db]/50">
+    <div class="container-site py-16 md:py-20 grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-start">
+      <div>
+        <hr class="fio-ouro mb-6" />
+        <h2 class="font-display text-2xl md:text-3xl font-medium text-petroleo">Objetivos atendidos</h2>
+        {s.objetivosTabela && (
+          <dl class="mt-6 space-y-4">
+            {s.objetivosTabela.map((o) => (
+              <div class="border-l-2 border-ouro/50 pl-4">
+                <dt class="font-medium text-petroleo">{o.obj}</dt>
+                <dd class="text-[15px] text-petroleo-soft">{o.desc}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+        {s.objetivosLista && (
+          <ul class="mt-6 space-y-3">
+            {s.objetivosLista.map((o) => (
+              <li class="flex items-start gap-3 text-[15px] leading-relaxed text-petroleo">
+                <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-ouro" aria-hidden="true"></span>
+                {o}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <div class="rounded-3xl bg-petroleo text-offwhite p-8 md:p-10 lg:mt-2">
+        <p class="text-xs uppercase tracking-[0.18em] text-ouro font-semibold">A promessa</p>
+        <p class="mt-4 font-display text-xl md:text-2xl font-medium leading-snug text-balance">{s.promessa}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Como o plano funciona + Benefícios + Dúvidas (fundidos) -->
+  <section class="container-site py-16 md:py-24">
+    <div class="max-w-3xl">
+      <hr class="fio-ouro mb-6" />
+      <h2 class="font-display text-2xl md:text-3xl font-medium text-petroleo">Como o plano funciona</h2>
+      <p class="mt-5 text-lg text-petroleo-soft leading-relaxed">{s.comoFunciona}</p>
+    </div>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 max-w-4xl">
+      {s.beneficios.map((b) => (
+        <div class="flex items-start gap-3 rounded-2xl border border-linha bg-white/40 p-5">
+          <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-ouro" aria-hidden="true"></span>
+          <p class="text-[15px] leading-relaxed text-petroleo">{b}</p>
+        </div>
+      ))}
+    </div>
+
+    {s.duvidas.length > 0 && (
+      <div class="mt-20 pt-16 border-t border-linha">
+        <h2 class="font-display text-2xl md:text-3xl font-medium text-petroleo">Dúvidas frequentes</h2>
+        <div class="mt-8 max-w-3xl">
+          <Acordeao itens={s.duvidas} />
+        </div>
+      </div>
+    )}
+  </section>
+
+  <!-- CTA -->
+  <CTABlock
+    titulo="O primeiro passo é entender onde você está."
+    ctaPrimarioLabel={ctaPrimario.label}
+    ctaPrimarioHref={ctaPrimario.href}
+    ctaSecundarioLabel={ctaSecundario.label}
+    ctaSecundarioHref={ctaSecundario.href}
+  />
+</BaseLayout>

@@ -1,0 +1,110 @@
+---
+/**
+ * FAQ — R3. Copy oficial de SITE_GRANVIC_CONTEUDO.md (com ajustes 13/08:
+ * "A adesão é mais simples?" e sem "quanto custa o diagnóstico").
+ * Fase 1: categorias liberadas. Veículos (5), Agro (7) e Segurança/dados (9)
+ * entram quando destravarem (D-03 / D-06 já resolvido mas texto de dados pendente).
+ * Acordeão fechado por padrão. Schema FAQPage para SEO.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABlock from '../components/CTABlock.astro';
+import Acordeao from '../components/Acordeao.astro';
+
+const categorias = [
+  {
+    nome: 'O que é planejamento patrimonial',
+    itens: [
+      { q: 'O que exatamente a GRANVIC faz?', a: 'Ajudamos pessoas, profissionais e empresas a transformar renda em ativos, com diagnóstico, plano e acompanhamento. O nosso produto é o plano.' },
+      { q: 'Isso é consultoria financeira?', a: 'É planejamento patrimonial baseado em ativos. O foco é a construção de patrimônio real — imóveis, ativos produtivos, participações —, não a alocação de investimentos financeiros.' },
+    ],
+  },
+  {
+    nome: 'Como funciona o processo',
+    itens: [
+      { q: 'O que acontece na primeira conversa?', a: 'Perguntas sobre o que você tem, o que quer conquistar e em que prazo. Sem proposta e sem apresentação de produto.' },
+      { q: 'E depois?', a: 'Montamos o seu Mapa Patrimonial e o Plano de Evolução Patrimonial, e apresentamos em uma segunda conversa. Só então discutimos qual instrumento executa cada etapa.' },
+      { q: 'Preciso contratar alguma coisa?', a: 'Não. O plano é seu, e existe mesmo que você decida não fazer nada agora.' },
+    ],
+  },
+  {
+    nome: 'O papel do consórcio',
+    itens: [
+      { q: 'A GRANVIC trabalha com consórcio?', a: 'Sim. O consórcio é hoje a nossa principal ferramenta de execução dos planos. Ele não é o nosso produto — o nosso produto é o plano.' },
+      { q: 'Consórcio é melhor que financiamento?', a: 'Depende de quatro coisas: o custo total, o que o seu capital deixa de render, o tempo até você ter o bem e se você consegue contratar cada opção. Existem casos em que o consórcio vence com folga e casos em que ele perde — e dizemos qual é o seu.' },
+      { q: 'Quanto tempo leva para receber o bem?', a: 'No consórcio, o tempo é indeterminado. Quem precisa do bem agora deve olhar primeiro as opções de posse imediata.' },
+      { q: 'A adesão é mais simples?', a: 'A entrada é mais acessível, porque não há análise de crédito para aderir ao grupo. Mas o consórcio não elimina a análise — ele a adia: ela acontece na hora de retirar o bem.' },
+      { q: 'E as condições — taxas, prazos, regras?', a: 'São apresentadas na conversa consultiva, com o contrato à vista, porque dependem do seu objetivo, do seu perfil e das condições vigentes. Não publicamos condição de produto no site.' },
+    ],
+  },
+  {
+    nome: 'Imóveis',
+    itens: [
+      { q: 'Vale mais a pena alugar ou comprar?', a: 'Depende do prazo em que você pretende ficar, do custo total de cada caminho e do que o seu capital renderia em cada cenário. É uma conta, não uma regra — e ela muda por caso.' },
+      { q: 'Comprar consultório ou clínica é um bom primeiro passo?', a: 'Para muitos profissionais de saúde, sim: troca uma despesa permanente por um ativo no lugar onde a renda é gerada. Mas isso precisa ser testado contra as outras prioridades do seu plano.' },
+      { q: 'E se eu já tenho um imóvel?', a: 'Ter um imóvel e ter uma estratégia patrimonial são coisas diferentes. O diagnóstico costuma mostrar o que o seu patrimônio produz hoje — e o que ele ainda não produz.' },
+    ],
+  },
+  {
+    nome: 'Empresas',
+    itens: [
+      { q: 'Por que separar patrimônio pessoal do patrimônio da empresa?', a: 'Porque quando a empresa para, o patrimônio que está dentro dela para junto. Separar é reduzir a concentração do risco.' },
+      { q: 'Comprar a sede é sempre melhor que alugar?', a: 'Não. Depende do estágio da empresa, da previsibilidade do faturamento e do custo de imobilizar capital que a operação talvez precise. Existe momento certo — e existe momento em que ainda não é.' },
+      { q: 'Isso serve para empresa de qualquer porte?', a: 'A conversa muda bastante conforme o porte. Nosso foco atual são empresas consolidadas, com alguns anos de operação.' },
+    ],
+  },
+  {
+    nome: 'Contratação e documentação',
+    itens: [
+      { q: 'Como é feita a contratação?', a: 'Toda formalização acontece pelo sistema oficial da administradora, com documento de ciência assinado por você. Pagamentos são feitos exclusivamente por boleto emitido pela administradora — a GRANVIC nunca recebe valores diretamente.' },
+      { q: 'A GRANVIC cobra alguma coisa por fora?', a: 'Não. Nenhum valor a título de consultoria, assessoria ou taxa própria. Se alguém em nome da GRANVIC cobrar qualquer valor fora do boleto da administradora, isso não é procedimento da empresa.' },
+      { q: 'De que documentos vou precisar?', a: 'Depende da operação e da administradora. Isso é informado na conversa consultiva, antes de qualquer formalização.' },
+    ],
+  },
+];
+
+// Schema FAQPage (SEO)
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: categorias.flatMap((c) =>
+    c.itens.map((i) => ({
+      '@type': 'Question',
+      name: i.q,
+      acceptedAnswer: { '@type': 'Answer', text: i.a },
+    }))
+  ),
+};
+---
+
+<BaseLayout
+  titulo="Perguntas Frequentes — GRANVIC"
+  descricao="Como funciona o planejamento patrimonial, o papel do consórcio e o processo da GRANVIC. As respostas às dúvidas mais comuns."
+>
+  <section class="container-site pt-20 pb-8 md:pt-28 md:pb-10">
+    <p class="text-xs md:text-sm uppercase tracking-[0.2em] text-ouro font-semibold">Perguntas frequentes</p>
+    <h1 class="mt-5 font-display font-medium text-4xl md:text-6xl leading-[1.06] text-petroleo max-w-3xl text-balance">
+      As dúvidas mais comuns — respondidas com clareza.
+    </h1>
+  </section>
+
+  <section class="container-site pb-16 md:pb-24">
+    <div class="max-w-3xl space-y-12">
+      {categorias.map((c) => (
+        <div>
+          <h2 class="font-display text-xl md:text-2xl font-medium text-petroleo mb-2">{c.nome}</h2>
+          <Acordeao itens={c.itens} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CTABlock
+    titulo="Ficou com alguma dúvida que não está aqui?"
+    texto="A primeira conversa não tem proposta nem compromisso. É o melhor lugar para as perguntas do seu caso."
+    ctaPrimarioLabel="Falar com um especialista"
+    ctaSecundarioLabel="Comparar as formas de conquistar"
+    ctaSecundarioHref="/simulacao"
+  />
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

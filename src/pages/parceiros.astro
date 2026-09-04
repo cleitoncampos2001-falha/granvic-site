@@ -1,0 +1,33 @@
+---
+/**
+ * SEJA UM PARCEIRO — placeholder honesto (04/09).
+ * Linkado pelo rodapé (coluna Contato) desde a construção do site, mas sem
+ * página própria — link quebrado real. 10_RECRUTAMENTO_E_EXPANSAO/ não tem
+ * conteúdo pronto pra critério de parceria ainda (pastas vazias) — não
+ * inventar critérios/benefícios. Direciona pro canal humano.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABlock from '../components/CTABlock.astro';
+---
+
+<BaseLayout
+  titulo="Seja um Parceiro"
+  descricao="Quer levar o planejamento patrimonial da GRANVIC pra sua rede? Fale com a gente."
+>
+  <section class="container-site pt-20 pb-20 md:pt-28 md:pb-28">
+    <div class="max-w-2xl">
+      <p class="text-xs md:text-sm uppercase tracking-[0.2em] text-ouro font-semibold">Parcerias</p>
+      <h1 class="mt-5 font-display font-medium text-3xl md:text-5xl leading-[1.1] text-petroleo text-balance">
+        Estamos estruturando o programa de parceiros.
+      </h1>
+      <p class="mt-7 text-lg text-petroleo-soft leading-relaxed">
+        Se você já tem uma rede — contábil, imobiliária, empresarial — e quer conversar sobre parceria com a GRANVIC, fale direto com a gente. Os critérios formais do programa ainda estão em construção.
+      </p>
+    </div>
+  </section>
+
+  <CTABlock
+    titulo="Vamos conversar sobre parceria."
+    ctaPrimarioLabel="Falar com um especialista"
+  />
+</BaseLayout>

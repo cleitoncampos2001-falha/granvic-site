@@ -1,0 +1,141 @@
+---
+/**
+ * Header — presente em todas as páginas (Mapa §5).
+ * Logo colorida sobre off-white · nav · CTA primário.
+ * Sticky, ganha elevação ao rolar. Menu mobile em drawer com o CTA dentro.
+ */
+import { NAV_PRINCIPAL, whatsappLink, WHATSAPP } from '../config/site';
+import SocialLinks from './SocialLinks.astro';
+
+const ctaHref = whatsappLink(WHATSAPP.mensagens.home) ?? '/contato';
+const ctaExterno = ctaHref.startsWith('http');
+---
+
+<header id="site-header" class="sticky top-0 z-50 bg-offwhite/95 backdrop-blur-sm border-b border-linha transition-shadow">
+  <div class="container-site flex items-center justify-between h-16 md:h-20">
+    <!-- Logo -->
+    <a href="/" aria-label="GRANVIC — página inicial" class="flex items-center shrink-0">
+      <img
+        src="/brand/logo_horizontal/granvic_horizontal_colorida.png"
+        alt="GRANVIC"
+        width="1135"
+        height="220"
+        class="h-7 md:h-8 w-auto"
+        fetchpriority="high"
+      />
+    </a>
+
+    <!-- Nav desktop -->
+    <nav aria-label="Navegação principal" class="hidden lg:flex items-center gap-8">
+      {
+        NAV_PRINCIPAL.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm text-petroleo/80 hover:text-petroleo transition-colors"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- CTA desktop -->
+    <a
+      href={ctaHref}
+      {...(ctaExterno ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      class="hidden lg:inline-flex items-center rounded-full bg-petroleo px-5 py-2.5 text-sm font-medium text-offwhite hover:bg-petroleo-claro transition-colors"
+    >
+      Fale com um especialista
+    </a>
+
+    <!-- Botão do menu mobile -->
+    <button
+      id="menu-toggle"
+      type="button"
+      class="lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 text-petroleo"
+      aria-label="Abrir menu"
+      aria-expanded="false"
+      aria-controls="menu-mobile"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Drawer mobile -->
+  <div
+    id="menu-mobile"
+    class="fixed inset-0 z-50 hidden bg-offwhite lg:hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menu"
+  >
+    <div class="container-site flex items-center justify-between h-16">
+      <img src="/brand/logo_horizontal/granvic_horizontal_colorida.png" alt="GRANVIC" width="1135" height="220" class="h-7 w-auto" />
+      <button
+        id="menu-close"
+        type="button"
+        class="inline-flex items-center justify-center w-11 h-11 -mr-2 text-petroleo"
+        aria-label="Fechar menu"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <nav aria-label="Navegação principal" class="container-site flex flex-col gap-1 pt-6">
+      {
+        NAV_PRINCIPAL.map((item) => (
+          <a href={item.href} class="py-3 text-lg text-petroleo border-b border-linha">
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href={ctaHref}
+        {...(ctaExterno ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        class="mt-6 inline-flex items-center justify-center rounded-full bg-petroleo px-6 py-3.5 text-base font-medium text-offwhite"
+      >
+        Fale com um especialista
+      </a>
+      <div class="mt-8">
+        <SocialLinks tom="escura" />
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  const toggle = document.getElementById('menu-toggle');
+  const close = document.getElementById('menu-close');
+  const drawer = document.getElementById('menu-mobile');
+
+  const openMenu = () => {
+    drawer?.classList.remove('hidden');
+    toggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeMenu = () => {
+    drawer?.classList.add('hidden');
+    toggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+
+  toggle?.addEventListener('click', openMenu);
+  close?.addEventListener('click', closeMenu);
+  drawer?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // Elevação ao rolar
+  const onScroll = () => {
+    if (window.scrollY > 8) header?.classList.add('shadow-sm');
+    else header?.classList.remove('shadow-sm');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>

@@ -1,0 +1,43 @@
+---
+/**
+ * SIMULAÇÃO — placeholder honesto (04/09).
+ * A ferramenta de comparação entre formas de aquisição (Fase 4 do Mapa) ainda
+ * não foi construída. Os CTAs "Comparar as formas de conquistar/aquisição"
+ * espalhados pelo site apontavam pra cá e ficavam sem destino — isso cria
+ * a página em vez de deixar o link quebrado, e oferece o caminho humano
+ * (que já faz a mesma comparação hoje, na conversa consultiva) como
+ * alternativa imediata. Substituir por comparador real quando a Fase 4
+ * for construída (D-030).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABlock from '../components/CTABlock.astro';
+import { whatsappLink, WHATSAPP } from '../config/site';
+
+const humano = whatsappLink(WHATSAPP.mensagens.home) ?? '/contato';
+---
+
+<BaseLayout
+  titulo="Comparar as Formas de Aquisição"
+  descricao="A ferramenta de comparação entre formas de aquisição está em construção. Hoje, essa comparação é feita com você na conversa consultiva."
+>
+  <section class="container-site pt-20 pb-20 md:pt-28 md:pb-28">
+    <div class="max-w-2xl">
+      <p class="text-xs md:text-sm uppercase tracking-[0.2em] text-ouro font-semibold">Comparar as formas de aquisição</p>
+      <h1 class="mt-5 font-display font-medium text-3xl md:text-5xl leading-[1.1] text-petroleo text-balance">
+        Essa ferramenta ainda está em construção.
+      </h1>
+      <p class="mt-7 text-lg text-petroleo-soft leading-relaxed">
+        Estamos desenvolvendo um comparador para que você veja, por conta própria, o custo total de cada forma de aquisição. Enquanto ela não está pronta, fazemos essa mesma comparação com você — com os números do seu caso — na conversa consultiva.
+      </p>
+    </div>
+  </section>
+
+  <CTABlock
+    titulo="Enquanto isso, comparamos com você."
+    texto="Sem proposta e sem apresentação de produto. Você sai sabendo qual forma de aquisição custa menos no seu caso."
+    ctaPrimarioLabel="Falar com um especialista"
+    ctaPrimarioHref={humano}
+    ctaSecundarioLabel="Voltar para as soluções"
+    ctaSecundarioHref="/solucoes"
+  />
+</BaseLayout>

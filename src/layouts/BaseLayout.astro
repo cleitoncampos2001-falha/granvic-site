@@ -1,0 +1,67 @@
+---
+/**
+ * BaseLayout — estrutura comum a todas as páginas.
+ * Head com SEO técnico (Mapa §11), skip-link e Header/Footer.
+ */
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../config/site';
+
+interface Props {
+  titulo: string;
+  descricao?: string;
+  /** Caminho relativo p/ canonical; default = URL atual */
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  titulo,
+  descricao = SITE.descricao,
+  canonical,
+  ogImage = '/brand/logo_simbolo/granvic_simbolo_ouro.png',
+} = Astro.props;
+
+const tituloCompleto = titulo === SITE.nome ? SITE.nomeOficial : `${titulo} · ${SITE.nome}`;
+const canonicalUrl = new URL(canonical ?? Astro.url.pathname, SITE.url).href;
+---
+
+<!doctype html>
+<html lang={SITE.idioma}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={descricao} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <link rel="icon" type="image/png" href="/brand/logo_simbolo/granvic_simbolo_ouro.png" />
+    <link rel="apple-touch-icon" href="/brand/logo_simbolo/granvic_simbolo_ouro.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.nome} />
+    <meta property="og:title" content={tituloCompleto} />
+    <meta property="og:description" content={descricao} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={new URL(ogImage, SITE.url).href} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a
+      href="#conteudo"
+      class="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:top-3 focus:left-3 focus:bg-petroleo focus:text-offwhite focus:px-4 focus:py-2 focus:rounded-full"
+    >
+      Ir para o conteúdo
+    </a>
+    <Header />
+    <main id="conteudo" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

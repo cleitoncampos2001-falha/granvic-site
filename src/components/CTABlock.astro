@@ -1,0 +1,59 @@
+---
+/**
+ * CTABlock — bloco de chamada ao fim de cada página (Mapa §5).
+ * Fundo petróleo (statement escuro), um CTA primário e um secundário.
+ * Na Fase 1 os CTAs apontam para WhatsApp; secundário para /contato.
+ * A COPY final de cada página vem de SITE_GRANVIC_CONTEUDO.md — os textos
+ * padrão aqui são estruturais e devem ser sobrescritos por página.
+ */
+import { whatsappLink, WHATSAPP } from '../config/site';
+
+interface Props {
+  titulo: string;
+  texto?: string;
+  ctaPrimarioLabel?: string;
+  ctaPrimarioHref?: string;
+  ctaSecundarioLabel?: string;
+  ctaSecundarioHref?: string;
+}
+
+const {
+  titulo,
+  texto,
+  ctaPrimarioLabel = 'Fale com um especialista',
+  ctaPrimarioHref = whatsappLink(WHATSAPP.mensagens.home) ?? '/contato',
+  ctaSecundarioLabel,
+  ctaSecundarioHref,
+} = Astro.props;
+
+const primExterno = ctaPrimarioHref.startsWith('http');
+---
+
+<section class="bg-petroleo text-offwhite">
+  <div class="container-site py-16 md:py-24 text-center">
+    <hr class="fio-ouro mx-auto mb-8" />
+    <h2 class="font-display text-2xl md:text-4xl font-semibold leading-tight max-w-3xl mx-auto text-balance">
+      {titulo}
+    </h2>
+    {texto && (
+      <p class="mt-5 text-base md:text-lg text-offwhite/80 max-w-2xl mx-auto">{texto}</p>
+    )}
+    <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href={ctaPrimarioHref}
+        {...(primExterno ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        class="inline-flex items-center justify-center rounded-full bg-ouro px-7 py-3.5 text-base font-medium text-petroleo hover:brightness-105 transition"
+      >
+        {ctaPrimarioLabel}
+      </a>
+      {ctaSecundarioLabel && ctaSecundarioHref && (
+        <a
+          href={ctaSecundarioHref}
+          class="inline-flex items-center justify-center rounded-full border border-offwhite/30 px-7 py-3.5 text-base font-medium text-offwhite hover:bg-offwhite/10 transition"
+        >
+          {ctaSecundarioLabel}
+        </a>
+      )}
+    </div>
+  </div>
+</section>

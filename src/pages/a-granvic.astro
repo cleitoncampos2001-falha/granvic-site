@@ -1,0 +1,137 @@
+---
+/**
+ * A GRANVIC — PÁGINA 02 · VERSÃO CURTA (13/08 — reduzir nº de blocos).
+ * 4 seções: Quem somos+Por que existimos (fundidos) → Manifesto →
+ *           Liderança → CTA.
+ * "Como enxergamos" (ciclo) cortado — já aparece na Home e 2x em Planejamento.
+ * "Quatro coisas que não se copiam com dinheiro" REMOVIDO (decisão do gestor,
+ * 02/09) — repetia o método, que já é o assunto inteiro de
+ * /planejamento-patrimonial; a navegação principal já linka pra lá.
+ * "O que nunca prometemos" REMOVIDO (decisão do gestor) — completa D-014, que
+ * já prevía enxugar esse bloco; a experiência de 30+ anos agora carrega a
+ * confiança, tornando o disclaimer defensivo desnecessário. Manifesto: redação
+ * não alterada (governança). Copy condensada — sincronizar
+ * SITE_GRANVIC_CONTEUDO.md (P-043).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABlock from '../components/CTABlock.astro';
+
+// BLOCO 07 — Liderança. Placeholders de foto e história (a incluir pelo gestor).
+// Sobrenome do Itamar pendente (P-U / D-08). Sem datas individuais (decisão D-014).
+const liderancas = [
+  {
+    nome: 'Cleiton Campos',
+    papel: 'Estratégia, tecnologia, marketing e institucional',
+    historia:
+      'Mais de duas décadas no mercado de consórcio e na construção de patrimônio. À frente da estratégia, da tecnologia e da marca da GRANVIC.',
+  },
+  {
+    nome: 'Itamar Campos',
+    papel: 'Operações, administradoras e comercial',
+    historia:
+      'Mais de três décadas no mercado de consórcio. Conduz as operações, a relação com as administradoras e a área comercial.',
+  },
+];
+---
+
+<BaseLayout
+  titulo="Quem é a GRANVIC — Planejamento Patrimonial"
+  descricao="Uma plataforma de planejamento patrimonial baseada em ativos. Conheça o propósito, os valores e o método da GRANVIC."
+>
+  <!-- ===== BLOCO 01+02 — QUEM SOMOS + POR QUE EXISTIMOS (fundidos) ===== -->
+  <section class="container-site pt-20 pb-16 md:pt-28 md:pb-20">
+    <p class="text-xs md:text-sm uppercase tracking-[0.2em] text-ouro font-semibold">A GRANVIC</p>
+    <h1 class="mt-5 font-display font-medium text-4xl md:text-6xl leading-[1.06] text-petroleo max-w-4xl text-balance">
+      Uma empresa de planejamento patrimonial.
+    </h1>
+    <p class="mt-5 font-display text-xl md:text-2xl font-medium text-petroleo/90 max-w-2xl text-balance">
+      Não somos novos neste mercado. Somos novos no jeito de fazer.
+    </p>
+    <hr class="fio-ouro my-8" />
+    <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+      <div class="max-w-2xl space-y-4 text-lg text-petroleo-soft leading-relaxed">
+        <p>A GRANVIC é uma plataforma de planejamento patrimonial especializada na aquisição estratégica de ativos para geração de patrimônio, renda e legado. Somos uma empresa desde 2017, e nossa liderança soma mais de 30 anos dentro do mercado de consórcio e da construção de patrimônio.</p>
+        <p>Nascemos de uma percepção incômoda: o mercado inteiro respondia à pergunta <em>“você quer comprar uma cota?”</em> — nunca à que o cliente realmente fazia: <strong class="text-petroleo font-semibold">como eu construo patrimônio de forma estratégica?</strong> Passamos décadas dentro desse mercado, e foi de dentro dele que enxergamos essa lacuna.</p>
+      </div>
+      <div class="rounded-3xl bg-petroleo text-offwhite p-9">
+        <p class="text-xs uppercase tracking-[0.18em] text-ouro font-semibold">Nosso propósito</p>
+        <p class="mt-4 font-display text-2xl font-medium leading-snug text-balance">
+          Democratizar o acesso à construção patrimonial estratégica no Brasil.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BLOCO 03 — MANIFESTO (petróleo, tipográfico puro) ===== -->
+  <section class="bg-petroleo text-offwhite">
+    <div class="container-site py-24 md:py-32">
+      <p class="text-xs uppercase tracking-[0.2em] text-ouro font-semibold text-center">Manifesto</p>
+      <div class="mx-auto mt-10 max-w-2xl font-display text-xl md:text-[1.7rem] leading-[1.5] text-offwhite/90 space-y-6 text-balance">
+        <p>Acreditamos que patrimônio não é consequência do acaso.</p>
+        <p class="text-offwhite font-medium">Patrimônio é consequência de estratégia.</p>
+        <p>
+          Acreditamos que renda sem ativos gera dependência.<br />
+          Acreditamos que ativos geram liberdade.<br />
+          Acreditamos que liberdade gera escolhas.<br />
+          E acreditamos que escolhas constroem legados.
+        </p>
+        <p>
+          Por isso, não vendemos produtos financeiros — <span class="text-offwhite font-medium">construímos estratégias patrimoniais</span>.<br />
+          Não vendemos crédito — <span class="text-offwhite font-medium">criamos caminhos para a aquisição de ativos</span>.<br />
+          Não vendemos parcelas — <span class="text-offwhite font-medium">planejamos patrimônios</span>.
+        </p>
+        <p>Porque acreditamos que toda pessoa, todo profissional ou toda empresa deve possuir um plano claro para transformar renda em patrimônio, patrimônio em renda e renda em legado.</p>
+        <p class="text-offwhite font-medium">Essa é a razão pela qual a GRANVIC existe.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BLOCO 07 — LIDERANÇA ===== -->
+  <section class="border-t border-linha bg-[#efe8db]/50">
+    <div class="container-site py-20 md:py-28">
+      <div class="max-w-3xl">
+        <hr class="fio-ouro mb-7" />
+        <h2 class="font-display text-3xl md:text-4xl font-medium text-petroleo text-balance">Quem conduz a GRANVIC.</h2>
+        <p class="mt-5 text-lg text-petroleo-soft leading-relaxed max-w-2xl">
+          Mais de 30 anos de experiência no mercado de consórcio e na construção de patrimônio conduzem cada plano.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-8 sm:grid-cols-2 max-w-4xl">
+        {
+          liderancas.map((s) => (
+            <article class="flex gap-6 rounded-2xl border border-linha bg-white/40 p-6">
+              {/* Retrato de TESTE (silhueta) — substituir por foto editorial 4:5 */}
+              <div
+                class="relative shrink-0 w-28 rounded-xl overflow-hidden"
+                style="aspect-ratio:4/5;background:linear-gradient(160deg,#1b4a5e,#0f2d3e)"
+                aria-label={`Foto de ${s.nome} — imagem de teste`}
+              >
+                <svg viewBox="0 0 80 100" preserveAspectRatio="xMidYMax slice" class="absolute inset-0 h-full w-full" aria-hidden="true">
+                  <g fill="#f5f0e8" opacity="0.82">
+                    <circle cx="40" cy="40" r="15" />
+                    <path d="M12 100 C12 76 26 64 40 64 C54 64 68 76 68 100 Z" />
+                  </g>
+                </svg>
+                <span class="absolute inset-x-0 bottom-1.5 text-center text-[9px] uppercase tracking-wider text-offwhite/60">foto de teste</span>
+              </div>
+              <div>
+                <h3 class="font-display text-xl font-medium text-petroleo">{s.nome}</h3>
+                <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-ouro">{s.papel}</p>
+                <p class="mt-3 text-[15px] leading-relaxed text-petroleo-soft">{s.historia}</p>
+                <p class="mt-2 text-[11px] italic text-petroleo-soft/50">Texto e foto de exemplo — a confirmar.</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BLOCO 08 — CTA ===== -->
+  <CTABlock
+    titulo="O primeiro passo é entender onde você está."
+    ctaPrimarioLabel="Começar pelo diagnóstico"
+    ctaSecundarioLabel="Comparar as formas de conquistar"
+    ctaSecundarioHref="/simulacao"
+  />
+</BaseLayout>

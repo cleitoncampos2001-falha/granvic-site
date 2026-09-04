@@ -1,0 +1,97 @@
+---
+/**
+ * PLANEJAMENTO PATRIMONIAL — PÁGINA 04 · VERSÃO CURTA (04/09 — cenários
+ * ilustrativos removidos por excesso de informação, pedido do sócio).
+ * 4 seções: Hero → Diagnóstico+Gap (fundidos) →
+ *           Plano+Ferramenta (fundidos, petróleo) → Estágios → CTA.
+ * "Acompanhamento" absorvido no texto do CTA.
+ * Jornada da Hero removida (sequência redundante c/ "Renda" repetido, 04/09).
+ * Mantém sequência do método e estágios. Sincronizar SITE_GRANVIC_CONTEUDO.md (P-043).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABlock from '../components/CTABlock.astro';
+import DiagramaJornada from '../components/DiagramaJornada.astro';
+
+const estagios = ['Estruturação', 'Consolidação', 'Expansão', 'Independência'];
+---
+
+<BaseLayout
+  titulo="Planejamento Patrimonial — Como Funciona"
+  descricao="Diagnóstico, Mapa Patrimonial e Plano de Evolução Patrimonial. Entenda como a GRANVIC constrói patrimônio com método — e por que o produto nunca vem primeiro."
+>
+  <!-- Hero -->
+  <section class="container-site pt-20 pb-16 md:pt-28 md:pb-20">
+    <p class="text-xs md:text-sm uppercase tracking-[0.2em] text-ouro font-semibold">Planejamento Patrimonial</p>
+    <h1 class="mt-5 font-display font-medium text-4xl md:text-6xl leading-[1.06] text-petroleo max-w-4xl text-balance">
+      Comprar não é o mesmo que construir.
+    </h1>
+    <p class="mt-8 max-w-2xl text-lg text-petroleo-soft leading-relaxed">
+      Uma compra isolada é um bem. Dentro de um plano, é uma posição patrimonial. É o que separa quem acumula de quem constrói.
+    </p>
+  </section>
+
+  <!-- Diagnóstico + Gap (fundidos) -->
+  <section class="border-t border-linha bg-[#efe8db]/50">
+    <div class="container-site py-16 md:py-24 grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-start">
+      <div>
+        <hr class="fio-ouro mb-7" />
+        <h2 class="font-display text-3xl md:text-4xl font-medium text-petroleo text-balance">Antes de recomendar, entendemos.</h2>
+      </div>
+      <div class="space-y-5 text-lg text-petroleo-soft leading-relaxed">
+        <p>Na primeira conversa não há proposta — há perguntas. Delas nasce o seu <strong class="text-petroleo font-semibold">Raio-X Patrimonial</strong>: um retrato da sua situação em dez dimensões, da renda à proteção. O <strong class="text-petroleo font-semibold">Mapa Patrimonial</strong> traduz isso numa imagem clara — onde você está hoje, onde pode chegar, e o que separa uma coisa da outra.</p>
+        <p class="border-l-2 border-ouro pl-5 text-petroleo font-medium italic">Você sai sabendo mais sobre o seu patrimônio do que entrou. Contratando algo ou não.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plano + Ferramenta (fundidos, petróleo) -->
+  <section class="bg-petroleo text-offwhite">
+    <div class="container-site py-16 md:py-24">
+      <div class="max-w-3xl">
+        <hr class="fio-ouro mb-7" />
+        <h2 class="font-display text-3xl md:text-[2.4rem] font-medium leading-tight text-balance">O Plano de Evolução Patrimonial.</h2>
+        <p class="mt-6 text-lg text-offwhite/80 leading-relaxed">
+          O principal documento que entregamos — e é seu: metas, ordem das aquisições, cronograma e projeção. Não é proposta com prazo de validade. É um plano, e existe mesmo que você não faça nada agora.
+        </p>
+        <p class="mt-7 font-display text-xl md:text-2xl font-medium leading-snug text-balance">
+          Receber uma proposta é comprar um produto. Receber um plano é iniciar uma trajetória.
+        </p>
+        <p class="mt-8 text-lg text-offwhite/80 leading-relaxed">
+          Só quando o plano existe é que discutimos como executá-lo. O instrumento serve ao plano — nunca o contrário.
+        </p>
+      </div>
+      <div class="mt-12 max-w-4xl">
+        <DiagramaJornada tom="escuro" fases={['Diagnóstico', 'Estratégia', 'Patrimônio', 'Ferramenta']} enfaseFinal={false} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Estágios + Cenários (fundidos) -->
+  <section class="border-t border-linha bg-[#efe8db]/50">
+    <div class="container-site py-16 md:py-24">
+      <div class="max-w-3xl">
+        <hr class="fio-ouro mb-7" />
+        <h2 class="font-display text-3xl md:text-4xl font-medium text-petroleo text-balance">Não existe estratégia genérica.</h2>
+        <p class="mt-6 text-lg text-petroleo-soft leading-relaxed">
+          Quem forma o primeiro ativo e quem já tem patrimônio consolidado precisam de coisas diferentes. O diagnóstico identifica o seu estágio — e a estratégia nasce dali.
+        </p>
+      </div>
+      <ol class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {estagios.map((e, i) => (
+          <li class="rounded-2xl border border-linha bg-white/40 p-6">
+            <span class="font-display text-2xl font-medium text-ouro">{String(i + 1).padStart(2, '0')}</span>
+            <p class="mt-2 font-display text-lg font-medium text-petroleo">{e}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <CTABlock
+    titulo="Descubra onde o seu patrimônio está hoje."
+    texto="A primeira conversa não tem proposta nem apresentação de produto. O plano é acompanhado ao longo dos anos — patrimônio se constrói em décadas, não em meses."
+    ctaPrimarioLabel="Começar pelo diagnóstico"
+    ctaSecundarioLabel="Comparar as formas de conquistar"
+    ctaSecundarioHref="/simulacao"
+  />
+</BaseLayout>

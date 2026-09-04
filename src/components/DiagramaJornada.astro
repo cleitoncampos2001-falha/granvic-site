@@ -1,0 +1,138 @@
+---
+/**
+ * DiagramaJornada — a fórmula patrimonial da marca como narrativa visual.
+ * V2 (13/08 — "mais visual"): medalhões com ícone geométrico por fase +
+ * trilho com brilho animado. Ícones são formas abstratas (chave, lupa,
+ * bússola, escudo, ondas) — NUNCA cifrão/moeda/seta-de-lucro (lista negra
+ * visual, Princípios Criativos §8). O ícone da "chave" reforça o símbolo
+ * já usado na marca.
+ * Regra §9: ênfase em ouro apenas no último nó (Legado / desligável).
+ * Desenha-se ao entrar na viewport (respeita prefers-reduced-motion).
+ */
+interface Props {
+  /** 'escuro' sobre petróleo, 'claro' sobre off-white */
+  tom?: 'escuro' | 'claro';
+  /** fases da fórmula; default = fórmula da Home (BLOCO 04) */
+  fases?: string[];
+  /** destacar o último nó em ouro (padrão: sim). Desligar em sequências de método. */
+  enfaseFinal?: boolean;
+}
+const {
+  tom = 'escuro',
+  fases = ['Objetivos', 'Estratégia', 'Ativos', 'Patrimônio', 'Legado'],
+  enfaseFinal = true,
+}: Props = Astro.props;
+const escuro = tom === 'escuro';
+
+/** Ícones geométricos abstratos, um por conceito da fórmula. Nunca dinheiro/seta de lucro. */
+const ICONES: Record<string, string> = {
+  Objetivos: '<circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>',
+  Diagnóstico: '<circle cx="10.5" cy="10.5" r="6"/><line x1="15" y1="15" x2="20" y2="20"/>',
+  Estratégia: '<path d="M12 4 L18.5 12 L12 20 L5.5 12 Z"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>',
+  Renda: '<path d="M2.5 12.5c2-4.2 4-4.2 6 0s4 4.2 6 0 4-4.2 6.5-1.6"/>',
+  Ativos: '<circle cx="8" cy="12" r="4"/><line x1="12" y1="12" x2="20" y2="12"/><line x1="16" y1="12" x2="16" y2="16"/><line x1="19" y1="12" x2="19" y2="15"/>',
+  Patrimônio: '<path d="M12 3 L19 6.2 V11 C19 16 16 19.6 12 21 C8 19.6 5 16 5 11 V6.2 Z"/>',
+  Ferramenta: '<path d="M12 3 L19 7 V17 L12 21 L5 17 V7 Z"/>',
+  Legado: '<path d="M4 15.5a8 8 0 0 1 16 0"/><path d="M7.5 15.5a4.5 4.5 0 0 1 9 0"/>',
+};
+const ICONE_PADRAO = '<circle cx="12" cy="12" r="6"/>';
+---
+
+<div class:list={['jornada', escuro ? 'is-escuro' : 'is-claro']} data-jornada>
+  <ol class="jornada-trilha">
+    {
+      fases.map((fase, i) => (
+        <li class:list={['fase', { legado: enfaseFinal && i === fases.length - 1 }]} style={`--i:${i}`}>
+          <span class="badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={ICONES[fase] ?? ICONE_PADRAO} />
+          </span>
+          <span class="nome">{fase}</span>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<style>
+  .jornada { width: 100%; }
+  .jornada-trilha {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    position: relative; gap: 8px;
+  }
+  /* trilho de fundo */
+  .jornada-trilha::before {
+    content: ''; position: absolute; left: 6%; right: 6%; top: 20px; height: 2px;
+    background: color-mix(in srgb, var(--color-ouro) 26%, transparent);
+  }
+  /* trilho preenchido (desenha ao entrar na viewport) */
+  .jornada-trilha::after {
+    content: ''; position: absolute; left: 6%; top: 20px; height: 2px; width: 0;
+    background-image: linear-gradient(90deg,
+      var(--color-ouro) 0%, color-mix(in srgb, var(--color-ouro) 55%, transparent) 60%, var(--color-ouro) 100%);
+    background-size: 220% 100%;
+    transition: width 1.4s ease;
+    max-width: 88%;
+  }
+  [data-jornada].vis .jornada-trilha::after { width: 88%; animation: fluxo 3.2s linear 1.4s infinite; }
+
+  .fase {
+    position: relative; z-index: 1; flex: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    text-align: center;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity .5s ease, transform .5s ease;
+    transition-delay: calc(var(--i) * 140ms);
+  }
+  [data-jornada].vis .fase { opacity: 1; transform: none; }
+
+  .badge {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: grid; place-items: center;
+    border: 1.5px solid var(--color-ouro);
+    background: var(--_badgebg);
+    color: var(--color-ouro);
+    box-shadow: 0 1px 3px rgba(15, 45, 62, 0.08);
+  }
+  .badge svg { width: 19px; height: 19px; }
+  .fase.legado .badge {
+    background: var(--color-ouro);
+    color: var(--_txtforte);
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-ouro) 18%, transparent);
+  }
+
+  .nome { font-size: 15px; letter-spacing: .01em; color: var(--_txt); }
+  .fase.legado .nome { color: var(--_txtforte); font-weight: 600; }
+
+  .is-escuro { --_badgebg: #12384b; --_txt: rgba(245,240,232,.82); --_txtforte: #fff; }
+  .is-claro  { --_badgebg: var(--color-offwhite); --_txt: var(--color-petroleo-soft); --_txtforte: var(--color-petroleo); }
+
+  @keyframes fluxo {
+    0% { background-position: 0% 0; }
+    100% { background-position: -220% 0; }
+  }
+
+  @media (max-width: 680px) {
+    .jornada-trilha { flex-direction: column; align-items: flex-start; gap: 22px; padding-left: 4px; }
+    .jornada-trilha::before, .jornada-trilha::after { display: none; }
+    .fase { flex-direction: row; gap: 16px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fase, .jornada-trilha::after { transition: none; }
+    .fase { opacity: 1; transform: none; }
+    [data-jornada] .jornada-trilha::after { width: 88%; animation: none; }
+  }
+</style>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('vis');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('[data-jornada]').forEach((el) => obs.observe(el));
+</script>

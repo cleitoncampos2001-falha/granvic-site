@@ -1,0 +1,148 @@
+/**
+ * DESIGN SYSTEM GRANVIC
+ * Derivado de brand.json (fonte única da identidade aplicada).
+ * Não improvisar cor ou tipografia — tudo aqui vem do manual da marca.
+ */
+
+@import 'tailwindcss';
+
+/* Elvon Grotesk — tipografia primária oficial da marca (Manual de Marca,
+   "Tipografia Primária"). Self-hosted a partir dos .ttf de desktop em
+   03_POSICIONAMENTO_E_MARCA/MARCA ABERTA/FONTES/ELVON GROTESK/, convertidos
+   pra .woff2 (04/09, D-029). O manual define UMA tipografia só — sem
+   serifada de uso geral; a serifada do logotipo é exclusiva do símbolo.
+   ⚠️ Uso web aplicado por decisão do gestor em 04/09; confirmar com quem
+   licenciou a fonte se o uso web está coberto (P-074). */
+@font-face {
+  font-family: 'Elvon Grotesk';
+  src: url('../fonts/elvon-grotesk/ElvonGrotesk-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Elvon Grotesk';
+  src: url('../fonts/elvon-grotesk/ElvonGrotesk-Regular-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Elvon Grotesk';
+  src: url('../fonts/elvon-grotesk/ElvonGrotesk-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Elvon Grotesk';
+  src: url('../fonts/elvon-grotesk/ElvonGrotesk-Medium-Italic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Elvon Grotesk';
+  src: url('../fonts/elvon-grotesk/ElvonGrotesk-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  /* Cores oficiais — brand.json */
+  --color-petroleo: #0f2d3e; /* Petróleo Profundo — principal, statements */
+  --color-petroleo-claro: #1b4a5e; /* variação de profundidade */
+  --color-ouro: #967e59; /* Ouro Envelhecido — ACENTO apenas, nunca dominante */
+  --color-offwhite: #f5f0e8; /* Off-white Quente — fundo base, respiro */
+
+  /* Neutros de apoio derivados (para bordas/estados sutis) */
+  --color-petroleo-soft: #345466; /* petróleo dessaturado p/ texto secundário sobre claro */
+  --color-linha: #e3dccf; /* linha/hairline sobre off-white */
+
+  /* Tipografia — Elvon Grotesk é a única tipografia oficial da marca
+     (corpo e display; o manual não define serifada de uso geral). */
+  --font-sans:
+    'Elvon Grotesk', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display:
+    'Elvon Grotesk', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* Ritmo tipográfico base */
+  --text-base: 1rem; /* 16px — mínimo p/ evitar zoom automático no iOS */
+
+  /* Larguras de leitura */
+  --container-conteudo: 46rem; /* ~70 caracteres por linha (regra mobile §7.1) */
+}
+
+/* ---- Base ---- */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Preserva cores/fundos ao imprimir ou "Salvar como PDF"
+   (sem isso o navegador descarta os fundos petróleo — sai só texto). */
+* {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+@media print {
+  #site-header { position: static; }
+}
+
+body {
+  background-color: var(--color-offwhite);
+  color: var(--color-petroleo);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Foco visível para navegação por teclado (acessibilidade AA) */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-ouro);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Respeitar preferência de movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---- Utilitários de composição da marca ---- */
+@layer components {
+  /* Container de leitura confortável */
+  .container-site {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-site {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* Fio dourado fino — acento gráfico (ouro nunca em texto pequeno) */
+  .fio-ouro {
+    height: 2px;
+    width: 3.5rem;
+    background-color: var(--color-ouro);
+    border: 0;
+  }
+}

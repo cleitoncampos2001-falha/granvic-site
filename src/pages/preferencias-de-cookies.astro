@@ -1,0 +1,32 @@
+---
+/**
+ * PREFERÊNCIAS DE COOKIES — placeholder honesto (04/09).
+ * Linkado pela Política de Privacidade §10 e pelo rodapé; página nunca
+ * tinha sido construída. Hoje o site NÃO usa nenhuma ferramenta de
+ * medição/publicidade (sem GA/Pixel/GTM) — só cookies estritamente
+ * necessários do próprio Astro/navegador. Não construir um banner de
+ * consentimento fake para categorias que não existem ainda; atualizar esta
+ * página no dia em que alguma ferramenta de medição/publicidade for adicionada.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  titulo="Preferências de Cookies"
+  descricao="Quais cookies o site da GRANVIC usa hoje e como isso pode mudar."
+>
+  <section class="container-site pt-20 pb-20 md:pt-28 md:pb-28">
+    <div class="max-w-2xl">
+      <p class="text-xs md:text-sm uppercase tracking-[0.2em] text-ouro font-semibold">Legal</p>
+      <h1 class="mt-5 font-display font-medium text-3xl md:text-5xl leading-[1.1] text-petroleo text-balance">
+        Preferências de Cookies
+      </h1>
+      <p class="mt-7 text-lg text-petroleo-soft leading-relaxed">
+        Hoje este site usa apenas cookies estritamente necessários — os que permitem o funcionamento básico e a segurança da navegação. Não usamos, no momento, ferramentas de medição de audiência ou de publicidade.
+      </p>
+      <p class="mt-5 text-lg text-petroleo-soft leading-relaxed">
+        Quando isso mudar, esta página passa a oferecer o controle real por categoria — aceitar, rejeitar os não necessários ou personalizar — conforme descrito na nossa <a href="/politica-de-privacidade" class="text-petroleo underline decoration-ouro underline-offset-2">Política de Privacidade</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

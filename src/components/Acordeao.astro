@@ -1,0 +1,29 @@
+---
+/**
+ * Acordeão — dúvidas frequentes (Mapa §5). Fechado por padrão, sem JS
+ * (usa <details>/<summary> nativos). Um item aberto por vez não é imposto —
+ * o padrão nativo permite múltiplos; suficiente e acessível.
+ */
+interface Props {
+  itens: { q: string; a: string }[];
+}
+const { itens } = Astro.props;
+---
+
+<div class="border-t border-linha">
+  {
+    itens.map((it) => (
+      <details class="group border-b border-linha">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-5">
+          <span class="font-display text-lg text-petroleo">{it.q}</span>
+          <span class="shrink-0 text-2xl leading-none text-ouro transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <p class="max-w-2xl pb-6 text-[15px] leading-relaxed text-petroleo-soft">{it.a}</p>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  summary::-webkit-details-marker { display: none; }
+</style>

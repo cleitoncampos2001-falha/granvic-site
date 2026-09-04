@@ -1,0 +1,39 @@
+---
+/**
+ * SOLUÇÕES — índice (PÁGINA 03). Copy oficial.
+ * Cartões com imagem via CardObjetivo (mesmo componente da Home — Mapa §5).
+ * Veículos ATIVADO (02/09) — Agro segue "em breve" (bloqueio estrutural, D-03).
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTABlock from '../../components/CTABlock.astro';
+import CardObjetivo from '../../components/CardObjetivo.astro';
+import { objetivos } from '../../data/objetivos';
+---
+
+<BaseLayout
+  titulo="Soluções — Planejamento Patrimonial por Objetivo"
+  descricao="Cada objetivo exige uma estratégia diferente. Encontre a solução ligada ao que você quer conquistar — imóveis, veículos, pesados, empresarial e mais."
+>
+  <section class="container-site pt-20 pb-8 md:pt-28 md:pb-10">
+    <p class="text-xs md:text-sm uppercase tracking-[0.2em] text-ouro font-semibold">Soluções</p>
+    <h1 class="mt-5 font-display font-medium text-4xl md:text-6xl leading-[1.06] text-petroleo max-w-4xl text-balance">
+      Encontre a solução para o seu objetivo.
+    </h1>
+    <p class="mt-6 text-lg text-petroleo-soft leading-relaxed max-w-2xl">
+      Cada objetivo exige uma estratégia diferente. O que não muda é a ordem: primeiro entender, depois planejar, e só então definir qual instrumento serve.
+    </p>
+  </section>
+
+  <section class="container-site pb-20 md:pb-28">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {objetivos.map((o) => <CardObjetivo objetivo={o} />)}
+    </div>
+  </section>
+
+  <CTABlock
+    titulo="Não sabe por onde começar?"
+    texto="O diagnóstico existe justamente para isso — mostrar qual objetivo vem primeiro no seu caso."
+    ctaSecundarioLabel="Comparar as formas de conquistar"
+    ctaSecundarioHref="/simulacao"
+  />
+</BaseLayout>

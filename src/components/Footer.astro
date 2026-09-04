@@ -1,0 +1,117 @@
+---
+/**
+ * Footer — 4 colunas + base jurídica (Mapa §9.3).
+ * Fundo petróleo (escuro sólido) → logo variante MISTA (política de variante).
+ * Redes: só as ativas. Dados jurídicos: "A CONFIRMAR" até o gestor fornecer.
+ */
+import { SITE, JURIDICO, WHATSAPP, whatsappLink } from '../config/site';
+import SocialLinks from './SocialLinks.astro';
+
+const ano = 2026; // ano fixo — build determinístico; revisar na virada do ano.
+
+const solucoes = [
+  { label: 'Imóveis', href: '/solucoes/imoveis' },
+  { label: 'Veículos', href: '/solucoes/veiculos' },
+  { label: 'Caminhões e Pesados', href: '/solucoes/pesados' },
+  { label: 'Agro', href: '/solucoes/agro' },
+  { label: 'Empresarial', href: '/solucoes/empresarial' },
+  { label: 'Serviços', href: '/servicos' },
+];
+
+const aGranvic = [
+  { label: 'Quem somos', href: '/a-granvic' },
+  { label: 'Planejamento Patrimonial', href: '/planejamento-patrimonial' },
+  { label: 'Conteúdos', href: '/conteudos' },
+  { label: 'FAQ', href: '/faq' },
+];
+
+const contato = [
+  { label: 'Fale com um especialista', href: '/contato' },
+  { label: 'Seja um parceiro', href: '/parceiros' },
+  { label: 'Trabalhe conosco', href: '/trabalhe-conosco' },
+];
+
+const waLink = whatsappLink(WHATSAPP.mensagens.home);
+---
+
+<footer class="bg-petroleo text-offwhite">
+  <div class="container-site py-14 md:py-16">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+      <!-- Coluna 1 — Marca -->
+      <div class="lg:pr-6">
+        <img
+          src="/brand/logo_horizontal/granvic_horizontal_mista.png"
+          alt="GRANVIC"
+          width="1135"
+          height="220"
+          class="h-8 w-auto"
+        />
+        <p class="mt-5 text-sm leading-relaxed text-offwhite/70 max-w-xs">
+          {SITE.assinatura}
+        </p>
+        <div class="mt-6">
+          <SocialLinks tom="clara" />
+        </div>
+      </div>
+
+      <!-- Coluna 2 — Soluções -->
+      <nav aria-label="Soluções">
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-ouro">Soluções</h3>
+        <ul class="mt-4 space-y-2.5">
+          {solucoes.map((i) => (
+            <li>
+              <a href={i.href} class="text-sm text-offwhite/75 hover:text-offwhite transition-colors">{i.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Coluna 3 — A GRANVIC -->
+      <nav aria-label="A GRANVIC">
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-ouro">A GRANVIC</h3>
+        <ul class="mt-4 space-y-2.5">
+          {aGranvic.map((i) => (
+            <li>
+              <a href={i.href} class="text-sm text-offwhite/75 hover:text-offwhite transition-colors">{i.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Coluna 4 — Contato -->
+      <nav aria-label="Contato e institucional">
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-ouro">Contato</h3>
+        <ul class="mt-4 space-y-2.5">
+          {contato.map((i) => (
+            <li>
+              <a href={i.href} class="text-sm text-offwhite/75 hover:text-offwhite transition-colors">{i.label}</a>
+            </li>
+          ))}
+          {waLink && (
+            <li>
+              <a href={waLink} target="_blank" rel="noopener noreferrer" class="text-sm text-offwhite/75 hover:text-offwhite transition-colors">WhatsApp</a>
+            </li>
+          )}
+          <li>
+            <a href={`mailto:${JURIDICO.emailInstitucional}`} class="text-sm text-offwhite/75 hover:text-offwhite transition-colors">{JURIDICO.emailInstitucional}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Base jurídica -->
+    <div class="mt-12 pt-8 border-t border-offwhite/15">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs text-offwhite/55">
+        <p>
+          {JURIDICO.razaoSocial} · CNPJ {JURIDICO.cnpj}
+        </p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <li><a href="/politica-de-privacidade" class="hover:text-offwhite/80 transition-colors">Política de Privacidade</a></li>
+          <li><a href="/termos-de-uso" class="hover:text-offwhite/80 transition-colors">Termos de Uso</a></li>
+          <li><a href="/preferencias-de-cookies" class="hover:text-offwhite/80 transition-colors">Preferências de Cookies</a></li>
+        </ul>
+      </div>
+      <p class="mt-4 text-xs text-offwhite/45">© {ano} {SITE.nome}. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>

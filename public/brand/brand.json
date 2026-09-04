@@ -1,0 +1,47 @@
+{
+  "empresa": "granvic",
+  "nome_oficial": "GRANVIC — Assessoria Patrimonial",
+  "versao": "1.0",
+  "atualizado_em": "2026-08-03",
+  "fonte_identidade": "Manual de marca - HILARINO (Granvic).pdf (2026)",
+  "cores": {
+    "petroleo_profundo": { "hex": "#0f2d3e", "uso": "cor principal; fundos de statement; tipografia sobre claro" },
+    "petroleo_claro": { "hex": "#1b4a5e", "uso": "variacao de profundidade; gradacoes" },
+    "ouro_envelhecido": { "hex": "#967e59", "uso": "acento SOMENTE — nunca dominante; simbolo; destaques" },
+    "off_white_quente": { "hex": "#f5f0e8", "uso": "fundo base claro; respiro; tipografia sobre escuro" }
+  },
+  "tipografia": {
+    "logotipo": "serifada exclusiva com ligadura R-A (nao substituivel)",
+    "primaria_apoio": "Elvon Grotesk"
+  },
+  "logos": [
+    { "id": "vertical_colorida", "arquivo": "logo_vertical/granvic_vertical_colorida.png", "url_publica": "https://assets.ajas.com.br/brands/granvic/logo_vertical/granvic_vertical_colorida.png", "w": 881, "h": 473, "ratio": 1.86, "aplicacao": "fundos claros (off-white)" },
+    { "id": "vertical_mista", "arquivo": "logo_vertical/granvic_vertical_mista.png", "url_publica": "https://assets.ajas.com.br/brands/granvic/logo_vertical/granvic_vertical_mista.png", "w": 881, "h": 473, "ratio": 1.86, "aplicacao": "fundos escuros de cor solida (petroleo)" },
+    { "id": "vertical_branca", "arquivo": "logo_vertical/granvic_vertical_branca.png", "url_publica": "https://assets.ajas.com.br/brands/granvic/logo_vertical/granvic_vertical_branca.png", "w": 880, "h": 473, "ratio": 1.86, "aplicacao": "sobre fotografia" },
+    { "id": "horizontal_colorida", "arquivo": "logo_horizontal/granvic_horizontal_colorida.png", "url_publica": "https://assets.ajas.com.br/brands/granvic/logo_horizontal/granvic_horizontal_colorida.png", "w": 1135, "h": 220, "ratio": 5.16, "aplicacao": "fundos claros (off-white)" },
+    { "id": "horizontal_mista", "arquivo": "logo_horizontal/granvic_horizontal_mista.png", "url_publica": "https://assets.ajas.com.br/brands/granvic/logo_horizontal/granvic_horizontal_mista.png", "w": 1135, "h": 220, "ratio": 5.16, "aplicacao": "fundos escuros de cor solida" },
+    { "id": "horizontal_branca", "arquivo": "logo_horizontal/granvic_horizontal_branca.png", "url_publica": "https://assets.ajas.com.br/brands/granvic/logo_horizontal/granvic_horizontal_branca.png", "w": 1135, "h": 220, "ratio": 5.16, "aplicacao": "sobre fotografia" },
+    { "id": "simbolo_ouro", "arquivo": "logo_simbolo/granvic_simbolo_ouro.png", "url_publica": "https://assets.ajas.com.br/brands/granvic/logo_simbolo/granvic_simbolo_ouro.png", "w": 645, "h": 531, "ratio": 1.21, "aplicacao": "espacos pequenos; fundos claros e escuros solidos" },
+    { "id": "simbolo_branco", "arquivo": "logo_simbolo/granvic_simbolo_branco.png", "url_publica": "https://assets.ajas.com.br/brands/granvic/logo_simbolo/granvic_simbolo_branco.png", "w": 646, "h": 532, "ratio": 1.21, "aplicacao": "espacos pequenos sobre fotografia" }
+  ],
+  "selo": {
+    "id": "selo_petroleo_branco",
+    "arquivo": "logo_selo/granvic_selo_petroleo_branco.png",
+    "url_publica": "https://assets.ajas.com.br/brands/granvic/logo_selo/granvic_selo_petroleo_branco.png",
+    "w": 3018, "h": 984, "ratio": 3.07,
+    "descricao": "pilula petroleo profundo #0f2d3e com horizontal branca; fallback para areas sem margem limpa (padrao Engine Visual)"
+  },
+  "politica_de_variante": {
+    "fundo_claro": "colorida",
+    "fundo_escuro_solido": "mista",
+    "fotografia": "branca",
+    "sem_area_limpa": "selo"
+  },
+  "regras": {
+    "margem_recorte": "proporcional ~2.6% (padrao Engine Visual; nunca margem fixa)",
+    "nunca_distorcer": true,
+    "ouro_nunca_dominante": true,
+    "proibido_desenhar_logo_na_cena_gerada": true,
+    "origem_brutos": "_incoming/ (GRANVIC-01/08/15/16/23/35/37/39.png, marca aberta transparente)"
+  }
+}

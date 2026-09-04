@@ -1,0 +1,33 @@
+---
+/**
+ * TRABALHE CONOSCO — placeholder honesto (04/09).
+ * Linkado pelo rodapé (coluna Contato) desde a construção do site, mas sem
+ * página própria — link quebrado real. 10_RECRUTAMENTO_E_EXPANSAO/ONBOARDING/
+ * não tem processo seletivo documentado ainda — não inventar vagas/etapas.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABlock from '../components/CTABlock.astro';
+---
+
+<BaseLayout
+  titulo="Trabalhe Conosco"
+  descricao="Quer fazer parte da GRANVIC? Deixe seu contato."
+>
+  <section class="container-site pt-20 pb-20 md:pt-28 md:pb-28">
+    <div class="max-w-2xl">
+      <p class="text-xs md:text-sm uppercase tracking-[0.2em] text-ouro font-semibold">Carreiras</p>
+      <h1 class="mt-5 font-display font-medium text-3xl md:text-5xl leading-[1.1] text-petroleo text-balance">
+        Ainda não temos um processo seletivo formal aberto.
+      </h1>
+      <p class="mt-7 text-lg text-petroleo-soft leading-relaxed">
+        A GRANVIC está em expansão nacional. Se você quer fazer parte, deixe seu contato — quando abrirmos posições, falamos com você primeiro.
+      </p>
+    </div>
+  </section>
+
+  <CTABlock
+    titulo="Deixe seu contato."
+    ctaPrimarioLabel="Falar com a GRANVIC"
+    ctaPrimarioHref="/contato"
+  />
+</BaseLayout>
