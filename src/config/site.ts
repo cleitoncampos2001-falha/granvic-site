@@ -106,4 +106,5 @@ export const NAV_PRINCIPAL = [
   { label: 'Planejamento Patrimonial', href: '/planejamento-patrimonial' },
   { label: 'Conteúdos', href: '/conteudos' },
   { label: 'FAQ', href: '/faq' },
+  { label: 'Agendar', href: '/agendar' },
 ] as const;
