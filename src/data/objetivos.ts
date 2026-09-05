@@ -19,6 +19,12 @@ export interface Objetivo {
   href: string;
   cenaImagem: string;
   gated?: boolean;
+  /** Caminho da imagem real em /public, quando já produzida (04-05/09). Sem
+   * pessoas, foco no ativo em padrão premium (decisão do gestor, D-035 —
+   * contraria a diretriz "pessoa em primeiro plano" do motor de marketing,
+   * aceita como direção própria do site institucional). Enquanto ausente,
+   * o componente usa o placeholder atmosférico "Imagem a produzir". */
+  imagemReal?: string;
 }
 
 export const objetivos: Objetivo[] = [
@@ -30,6 +36,7 @@ export const objetivos: Objetivo[] = [
     cta: 'Ver como isso vira plano',
     href: '/solucoes/imoveis',
     cenaImagem: 'a família recebendo as chaves da casa própria pela primeira vez',
+    imagemReal: '/imagens/objetivo-imovel.jpg',
   },
   {
     nome: 'Veículo',

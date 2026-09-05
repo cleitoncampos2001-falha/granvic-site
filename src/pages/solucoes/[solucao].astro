@@ -28,16 +28,22 @@ const ctaSecundario = s.ctaSecundarioLabel
 ---
 
 <BaseLayout titulo={s.seoTitle} descricao={s.seoDesc}>
-  <!-- Hero com imagem (placeholder atmosférico — a foto da cena §9 entra no lugar) -->
+  <!-- Hero com imagem (real quando produzida; senão placeholder atmosférico) -->
   <section class="relative min-h-[68vh] flex items-end overflow-hidden text-offwhite">
-    <div class="absolute inset-0" style="background:
-      radial-gradient(90% 70% at 74% 12%, rgba(150,126,89,.42), transparent 55%),
-      radial-gradient(120% 120% at 15% 110%, rgba(9,28,40,.95), transparent 60%),
-      linear-gradient(120deg,#1b4a5e,#0f2d3e 70%);"></div>
-    <div class="absolute inset-x-0 bottom-0 h-2/3" style="background:linear-gradient(180deg,transparent,rgba(9,28,40,.85))"></div>
-    <div class="absolute right-4 top-4 md:right-6 md:top-6 rounded-full bg-black/25 px-4 py-2 text-[11px] text-offwhite/85 border border-offwhite/15">
-      Imagem a produzir · <span class="text-ouro">{s.cenaImagem}</span>
-    </div>
+    {s.imagemReal ? (
+      <img src={s.imagemReal} alt={s.cenaImagem} class="absolute inset-0 h-full w-full object-cover" fetchpriority="high" />
+    ) : (
+      <div class="absolute inset-0" style="background:
+        radial-gradient(90% 70% at 74% 12%, rgba(150,126,89,.42), transparent 55%),
+        radial-gradient(120% 120% at 15% 110%, rgba(9,28,40,.95), transparent 60%),
+        linear-gradient(120deg,#1b4a5e,#0f2d3e 70%);"></div>
+    )}
+    <div class="absolute inset-0" style={`background:linear-gradient(0deg, rgba(9,28,40,.9), rgba(9,28,40,.35) 55%, rgba(9,28,40,${s.imagemReal ? '.55' : '.15'}) 100%)`}></div>
+    {!s.imagemReal && (
+      <div class="absolute right-4 top-4 md:right-6 md:top-6 rounded-full bg-black/25 px-4 py-2 text-[11px] text-offwhite/85 border border-offwhite/15">
+        Imagem a produzir · <span class="text-ouro">{s.cenaImagem}</span>
+      </div>
+    )}
     <div class="container-site relative pb-14 md:pb-20 pt-28">
       <nav class="text-sm text-offwhite/70 mb-5" aria-label="Trilha">
         <a href="/solucoes" class="hover:text-offwhite">Soluções</a> <span class="text-ouro">/</span> {s.nome}

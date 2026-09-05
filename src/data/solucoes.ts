@@ -16,6 +16,8 @@ export interface Solucao {
   seoDesc: string;
   h1: string;
   cenaImagem: string;
+  /** Caminho da imagem real em /public, quando já produzida (D-035). */
+  imagemReal?: string;
   problema: string[];
   objetivosLista?: string[];
   objetivosTabela?: { obj: string; desc: string }[];
@@ -38,6 +40,7 @@ export const solucoes: Solucao[] = [
       'Do primeiro imóvel ao imóvel de renda e à sede própria: defina o papel de cada imóvel no seu patrimônio antes de decidir como pagar.',
     h1: 'Tem imóvel que custa. Tem imóvel que paga.',
     cenaImagem: 'a família recebendo as chaves da casa própria pela primeira vez',
+    imagemReal: '/imagens/objetivo-imovel.jpg',
     problema: [
       'A maioria das pessoas compra imóvel por necessidade imediata e descobre tarde que comprou um custo. Outras pagam aluguel por uma década inteira sem perceber que estão construindo o patrimônio de outra pessoa — e o sonho da casa própria fica sempre um passo à frente.',
       'A diferença entre os dois casos nunca foi o imóvel. Foi o plano — ou a ausência dele.',

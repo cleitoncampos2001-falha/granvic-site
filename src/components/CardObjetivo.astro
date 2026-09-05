@@ -22,17 +22,27 @@ const Tag = o.gated ? 'div' : 'a';
     o.gated ? 'opacity-80' : 'hover:border-ouro',
   ]}
 >
-  <!-- Imagem (placeholder atmosférico — cena §9) -->
-  <div class="relative aspect-[4/3] overflow-hidden" style="background:
-    radial-gradient(85% 70% at 78% 10%, rgba(150,126,89,.4), transparent 55%),
-    radial-gradient(120% 120% at 10% 115%, rgba(9,28,40,.95), transparent 62%),
-    linear-gradient(125deg,#1b4a5e,#0f2d3e 72%);">
-    <span class="absolute right-2.5 top-2.5 rounded-full bg-black/25 px-2.5 py-1 text-[9px] uppercase tracking-wider text-offwhite/80 border border-offwhite/15">
-      Imagem a produzir
-    </span>
-    <span class="absolute inset-x-3 bottom-2.5 text-[10.5px] leading-snug text-ouro/90">
-      {o.cenaImagem}
-    </span>
+  <!-- Imagem (real quando produzida; senão placeholder atmosférico — cena §9) -->
+  <div
+    class="relative aspect-[4/3] overflow-hidden"
+    style={!o.imagemReal ? `background:
+      radial-gradient(85% 70% at 78% 10%, rgba(150,126,89,.4), transparent 55%),
+      radial-gradient(120% 120% at 10% 115%, rgba(9,28,40,.95), transparent 62%),
+      linear-gradient(125deg,#1b4a5e,#0f2d3e 72%);` : undefined}
+  >
+    {o.imagemReal && (
+      <img src={o.imagemReal} alt={o.cenaImagem} class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+    )}
+    {!o.imagemReal && (
+      <>
+        <span class="absolute right-2.5 top-2.5 rounded-full bg-black/25 px-2.5 py-1 text-[9px] uppercase tracking-wider text-offwhite/80 border border-offwhite/15">
+          Imagem a produzir
+        </span>
+        <span class="absolute inset-x-3 bottom-2.5 text-[10.5px] leading-snug text-ouro/90">
+          {o.cenaImagem}
+        </span>
+      </>
+    )}
     {o.gated && (
       <span class="absolute left-2.5 top-2.5 rounded-full bg-petroleo/70 px-2.5 py-1 text-[9px] uppercase tracking-wider text-offwhite/85">
         Em breve
