@@ -91,7 +91,7 @@ export const FORM_ENDPOINT: string | null = null;
  * (formato "seuusuario/nome-do-evento", igual aparece na URL pública do
  * evento). Enquanto null, /agendar mostra o fallback de WhatsApp/e-mail.
  */
-export const CAL_LINK: string | null = null;
+export const CAL_LINK: string | null = 'cleiton-campos-jxt7le/primeira-conversa';
 
 /** Monta um link wa.me com mensagem pré-preenchida, ou null se sem número. */
 export function whatsappLink(mensagem: string): string | null {
