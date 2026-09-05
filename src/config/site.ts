@@ -84,6 +84,15 @@ export const REDES = {
  */
 export const FORM_ENDPOINT: string | null = null;
 
+/**
+ * Agendamento — widget de calendário embutido em /agendar (Cal.com).
+ * ⚠️ A CONFIRMAR — crie uma conta gratuita em https://cal.com, crie um tipo
+ * de evento (ex.: "Primeira Conversa — 30min") e cole aqui o `calLink`
+ * (formato "seuusuario/nome-do-evento", igual aparece na URL pública do
+ * evento). Enquanto null, /agendar mostra o fallback de WhatsApp/e-mail.
+ */
+export const CAL_LINK: string | null = null;
+
 /** Monta um link wa.me com mensagem pré-preenchida, ou null se sem número. */
 export function whatsappLink(mensagem: string): string | null {
   if (!WHATSAPP.numero) return null;
