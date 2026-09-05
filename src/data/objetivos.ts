@@ -45,6 +45,7 @@ export const objetivos: Objetivo[] = [
     cta: 'Ver como isso vira plano',
     href: '/solucoes/veiculos',
     cenaImagem: 'a pessoa abrindo a porta do carro novo pela primeira vez',
+    imagemReal: '/imagens/objetivo-veiculo.jpg',
   },
   {
     nome: 'Caminhões e Pesados',
@@ -53,6 +54,7 @@ export const objetivos: Objetivo[] = [
     cta: 'Falar com um especialista',
     href: '/solucoes/pesados',
     cenaImagem: 'o primeiro caminhão da frota saindo para a estrada, ao amanhecer',
+    imagemReal: '/imagens/objetivo-pesados.jpg',
   },
   {
     nome: 'Agro',
@@ -61,6 +63,7 @@ export const objetivos: Objetivo[] = [
     cta: 'Falar com um especialista',
     href: '/solucoes/agro',
     cenaImagem: 'produtor e sucessor caminhando na lavoura, máquina em operação ao fundo',
+    imagemReal: '/imagens/objetivo-agro.jpg',
   },
   {
     nome: 'Empresa',
@@ -69,6 +72,7 @@ export const objetivos: Objetivo[] = [
     cta: 'Falar com um especialista',
     href: '/solucoes/empresarial',
     cenaImagem: 'a placa com o nome da empresa sendo instalada na fachada',
+    imagemReal: '/imagens/objetivo-empresarial.jpg',
   },
   {
     nome: 'Serviços',
@@ -77,5 +81,6 @@ export const objetivos: Objetivo[] = [
     cta: 'Explorar outros patrimônios',
     href: '/servicos',
     cenaImagem: 'painéis solares sendo instalados no telhado de casa',
+    imagemReal: '/imagens/objetivo-servicos.jpg',
   },
 ];

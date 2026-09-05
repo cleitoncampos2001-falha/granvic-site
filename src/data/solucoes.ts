@@ -78,6 +78,7 @@ export const solucoes: Solucao[] = [
       'Primeiro veículo, troca planejada ou upgrade — de entrada a elétrico: compare o custo total de cada forma de aquisição antes de decidir.',
     h1: 'O carro dos seus sonhos pode ser o seu primeiro grande patrimônio.',
     cenaImagem: 'a pessoa abrindo a porta do carro novo pela primeira vez',
+    imagemReal: '/imagens/objetivo-veiculo.jpg',
     problema: [
       'Para muita gente, o primeiro carro é a primeira grande conquista patrimonial — e o carro dos sonhos costuma vir logo depois. A decisão, no entanto, é quase sempre tomada pela parcela que cabe no bolso, não pelo que ela custa de verdade ao longo do tempo.',
     ],
@@ -109,6 +110,7 @@ export const solucoes: Solucao[] = [
       'Primeiro caminhão, renovação de frota e implementos: adquira ativo produtivo sem comprometer o capital de giro — e comparando todas as formas de aquisição.',
     h1: 'O caminhão certo se paga. O errado paga de volta em prejuízo.',
     cenaImagem: 'o primeiro caminhão saindo para a estrada, ao amanhecer',
+    imagemReal: '/imagens/objetivo-pesados.jpg',
     problema: [
       'Frota que cresce sem plano transforma expansão em sufoco. O ativo produtivo tem uma variável que os outros não têm: o custo da espera. Uma frota que geraria margem todo mês custa dinheiro para não existir — e esse número precisa entrar na conta.',
     ],
@@ -140,6 +142,7 @@ export const solucoes: Solucao[] = [
       'Máquinas e implementos, armazenagem, irrigação e diversificação patrimonial fora da porteira — comece testando seu enquadramento em crédito rural dirigido.',
     h1: 'Você tem terra. É hora de ter estratégia.',
     cenaImagem: 'produtor e sucessor caminhando na lavoura, máquina em operação ao fundo',
+    imagemReal: '/imagens/objetivo-agro.jpg',
     problema: [
       'O produtor rural é, com frequência, o cliente mais capitalizado e o mais concentrado. Quase todo o patrimônio está no mesmo lugar, exposto aos mesmos riscos — clima, preço, safra.',
     ],
@@ -169,6 +172,7 @@ export const solucoes: Solucao[] = [
       'Sede própria, expansão e patrimônio fora da operação: separe a vida do CNPJ e faça seu patrimônio pessoal crescer junto com o faturamento.',
     h1: 'Se sua empresa parasse hoje, qual patrimônio continuaria com você?',
     cenaImagem: 'a placa com o nome da empresa sendo instalada na fachada',
+    imagemReal: '/imagens/objetivo-empresarial.jpg',
     problema: [
       'O empresário brasileiro constrói patrimônio dentro da operação e raramente fora dela. Reinveste tudo, cresce em faturamento e descobre, no dia em que precisa parar ou vender, que a empresa era o patrimônio inteiro.',
       'Quando a empresa para, o patrimônio vai junto — a menos que exista um plano.',
