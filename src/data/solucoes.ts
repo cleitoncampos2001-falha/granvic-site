@@ -196,7 +196,7 @@ export const solucoes: Solucao[] = [
     ],
     duvidas: [
       { q: 'Por que não simplesmente reinvestir tudo na empresa?', a: 'É uma escolha legítima e muitas vezes correta. A questão é se ela foi uma decisão ou um automatismo — e o que aconteceria com você se a operação parasse por seis meses.' },
-      { q: 'Consigo usar isso para capital de giro, ou só para ativos físicos como máquinas e imóveis comerciais?', a: 'É voltado para ativos físicos — imóveis, máquinas, equipamentos —, não para capital de giro. Se o que falta é caixa para a operação, essa não é a ferramenta certa; se é ativo patrimonial fora do CNPJ, é exatamente para isso que ela serve.' },
+      { q: 'O que é alavancagem patrimonial, e como isso funciona pra minha empresa?', a: 'É usar o patrimônio que você já construiu — dentro ou fora da empresa — como base para estruturar a próxima aquisição, sem descapitalizar a operação. É exatamente o que o diagnóstico mapeia antes de qualquer recomendação.' },
       { q: 'Qual a diferença entre fazer isso pela empresa ou no meu CPF?', a: 'No CNPJ, o ativo fica exposto ao risco da operação. No CPF, fica protegido dela — mas entra em outra lógica de custo e uso. O diagnóstico mostra qual faz mais sentido no seu caso.' },
       { q: 'Isso substitui a conversa com meu contador?', a: 'Não. O contador olha o lado tributário, que é o dele. O plano patrimonial é outra camada, e as duas conversam — podemos preparar um resumo para você levar a ele.' },
     ],
