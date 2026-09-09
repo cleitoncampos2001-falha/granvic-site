@@ -82,7 +82,7 @@ export const REDES = {
  * instruções de deploy no topo do arquivo). Enquanto null, o formulário
  * mostra o fallback de WhatsApp/e-mail em vez de tentar enviar.
  */
-export const FORM_ENDPOINT: string | null = null;
+export const FORM_ENDPOINT: string | null = 'https://script.google.com/macros/s/AKfycbzwerWxxK104KvtYs9hsp60x7mYwQRqVcrpy75iysta0LmPQp0qx_7KkkTt8gaEuKU/exec';
 
 /**
  * Agendamento — widget de calendário embutido em /agendar (Cal.com).
