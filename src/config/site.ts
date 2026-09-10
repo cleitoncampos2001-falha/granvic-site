@@ -85,6 +85,15 @@ export const REDES = {
 export const FORM_ENDPOINT: string | null = 'https://script.google.com/macros/s/AKfycbzwerWxxK104KvtYs9hsp60x7mYwQRqVcrpy75iysta0LmPQp0qx_7KkkTt8gaEuKU/exec';
 
 /**
+ * Meta Pixel (Facebook/Instagram Ads) — cookie de PUBLICIDADE.
+ * Recebido do Gustavo em 10/09. Ao ativar, `/preferencias-de-cookies` e a
+ * Política de Privacidade §10 deixam de estar corretas ("não usamos
+ * ferramentas de medição/publicidade") — atualizado junto (D-040).
+ * `null` desativa o pixel em todas as páginas.
+ */
+export const META_PIXEL_ID: string | null = '4447663178846190';
+
+/**
  * Agendamento — widget de calendário embutido em /agendar (Cal.com).
  * ⚠️ A CONFIRMAR — crie uma conta gratuita em https://cal.com, crie um tipo
  * de evento (ex.: "Primeira Conversa — 30min") e cole aqui o `calLink`

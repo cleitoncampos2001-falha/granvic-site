@@ -1,19 +1,18 @@
 ---
 /**
- * PREFERÊNCIAS DE COOKIES — placeholder honesto (04/09).
- * Linkado pela Política de Privacidade §10 e pelo rodapé; página nunca
- * tinha sido construída. Hoje o site NÃO usa nenhuma ferramenta de
- * medição/publicidade (sem GA/Pixel/GTM) — só cookies estritamente
- * necessários do próprio Astro/navegador. Não construir um banner de
- * consentimento fake para categorias que não existem ainda; atualizar esta
- * página no dia em que alguma ferramenta de medição/publicidade for adicionada.
+ * PREFERÊNCIAS DE COOKIES — atualizada 10/09 (D-040) quando o Meta Pixel
+ * entrou no site. Antes disso, o site só usava cookies estritamente
+ * necessários; agora usa também cookie de medição/publicidade (Meta Pixel),
+ * sob consentimento via BannerCookies.astro (localStorage
+ * `granvic_cookie_consent`). Esta página deixa o visitante trocar a escolha
+ * a qualquer momento, como a Política de Privacidade §10 promete.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
   titulo="Preferências de Cookies"
-  descricao="Quais cookies o site da GRANVIC usa hoje e como isso pode mudar."
+  descricao="Quais cookies o site da GRANVIC usa e como alterar sua escolha."
 >
   <section class="container-site pt-20 pb-20 md:pt-28 md:pb-28">
     <div class="max-w-2xl">
@@ -22,11 +21,54 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         Preferências de Cookies
       </h1>
       <p class="mt-7 text-lg text-petroleo-soft leading-relaxed">
-        Hoje este site usa apenas cookies estritamente necessários — os que permitem o funcionamento básico e a segurança da navegação. Não usamos, no momento, ferramentas de medição de audiência ou de publicidade.
+        Este site usa cookies estritamente necessários sempre — sem eles, o site não funciona. Também usamos um cookie de medição/publicidade (Meta Pixel, para entender e melhorar nossos anúncios) — esse só é ativado com a sua permissão, dada no banner que aparece na sua primeira visita.
       </p>
-      <p class="mt-5 text-lg text-petroleo-soft leading-relaxed">
-        Quando isso mudar, esta página passa a oferecer o controle real por categoria — aceitar, rejeitar os não necessários ou personalizar — conforme descrito na nossa <a href="/politica-de-privacidade" class="text-petroleo underline decoration-ouro underline-offset-2">Política de Privacidade</a>.
+
+      <div id="pref-status" class="mt-8 rounded-2xl border border-linha bg-white/40 p-6">
+        <p class="text-sm text-petroleo-soft">Carregando sua preferência atual…</p>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <button id="pref-aceitar" type="button" class="rounded-full bg-petroleo px-6 py-3 text-sm font-medium text-offwhite hover:brightness-110 transition">
+          Aceitar cookies de medição/publicidade
+        </button>
+        <button id="pref-rejeitar" type="button" class="rounded-full border border-linha px-6 py-3 text-sm font-medium text-petroleo hover:bg-white/60 transition">
+          Rejeitar cookies não essenciais
+        </button>
+      </div>
+
+      <p class="mt-8 text-sm text-petroleo-soft leading-relaxed">
+        Mais detalhes em <a href="/politica-de-privacidade" class="text-petroleo underline decoration-ouro underline-offset-2">Política de Privacidade</a>, item 10.
       </p>
     </div>
   </section>
 </BaseLayout>
+
+<script is:inline>
+  (function () {
+    var status = document.getElementById('pref-status');
+    var aceitar = document.getElementById('pref-aceitar');
+    var rejeitar = document.getElementById('pref-rejeitar');
+
+    function ler() {
+      try { return localStorage.getItem('granvic_cookie_consent'); } catch (e) { return null; }
+    }
+    function atualizar() {
+      var escolha = ler();
+      if (escolha === 'accepted') status.innerHTML = '<p class="text-sm text-petroleo font-medium">Sua escolha atual: cookies de medição/publicidade aceitos.</p>';
+      else if (escolha === 'rejected') status.innerHTML = '<p class="text-sm text-petroleo font-medium">Sua escolha atual: cookies não essenciais rejeitados.</p>';
+      else status.innerHTML = '<p class="text-sm text-petroleo-soft">Você ainda não fez uma escolha — o banner aparece na próxima navegação, ou use os botões abaixo.</p>';
+    }
+    atualizar();
+
+    aceitar?.addEventListener('click', function () {
+      try { localStorage.setItem('granvic_cookie_consent', 'accepted'); } catch (e) {}
+      if (window.__granvicLoadMetaPixel) window.__granvicLoadMetaPixel();
+      atualizar();
+    });
+    rejeitar?.addEventListener('click', function () {
+      try { localStorage.setItem('granvic_cookie_consent', 'rejected'); } catch (e) {}
+      atualizar();
+    });
+  })();
+</script>

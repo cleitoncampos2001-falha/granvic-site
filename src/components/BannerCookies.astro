@@ -1,0 +1,84 @@
+---
+/**
+ * Banner de consentimento de cookies (10/09, D-040).
+ * A Política de Privacidade §10 já promete: cookies não-essenciais só
+ * ativam após escolha do visitante. Como o Meta Pixel entrou nesta mesma
+ * sessão, o banner tem que existir ANTES do pixel disparar de verdade —
+ * senão o site descumpre a própria política publicada.
+ * Escolha do visitante fica em localStorage (`granvic_cookie_consent`:
+ * "accepted" | "rejected"). Simplificado a 2 opções (Aceitar / Rejeitar
+ * não essenciais) em vez de personalização por categoria — hoje só existe
+ * 1 ferramenta não essencial (Meta Pixel), granularidade por categoria
+ * fica pra quando houver mais de uma.
+ */
+import { META_PIXEL_ID } from '../config/site';
+---
+
+{META_PIXEL_ID && (
+  <div
+    id="banner-cookies"
+    class="fixed inset-x-0 bottom-0 z-50 hidden border-t border-linha bg-offwhite/98 backdrop-blur-sm shadow-[0_-4px_20px_rgba(0,0,0,0.08)]"
+  >
+    <div class="container-site py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <p class="text-sm text-petroleo-soft leading-relaxed max-w-2xl">
+        Usamos cookies estritamente necessários sempre, e cookies de medição/publicidade só com sua permissão. Saiba mais na <a href="/politica-de-privacidade" class="text-petroleo underline decoration-ouro underline-offset-2">Política de Privacidade</a> ou em <a href="/preferencias-de-cookies" class="text-petroleo underline decoration-ouro underline-offset-2">Preferências de Cookies</a>.
+      </p>
+      <div class="flex gap-3 shrink-0">
+        <button id="cookies-rejeitar" type="button" class="rounded-full border border-linha px-5 py-2.5 text-sm font-medium text-petroleo hover:bg-white/60 transition">
+          Rejeitar não essenciais
+        </button>
+        <button id="cookies-aceitar" type="button" class="rounded-full bg-petroleo px-5 py-2.5 text-sm font-medium text-offwhite hover:brightness-110 transition">
+          Aceitar
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+<script define:vars={{ META_PIXEL_ID }} is:inline>
+  window.__granvicLoadMetaPixel = function () {
+    if (!META_PIXEL_ID || window.fbq) return;
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', META_PIXEL_ID);
+    fbq('track', 'PageView');
+    var img = document.createElement('img');
+    img.height = 1; img.width = 1; img.style.display = 'none';
+    img.src = 'https://www.facebook.com/tr?id=' + META_PIXEL_ID + '&ev=PageView&noscript=1';
+    document.body.appendChild(img);
+  };
+
+  (function () {
+    if (!META_PIXEL_ID) return;
+    var escolha = null;
+    try { escolha = localStorage.getItem('granvic_cookie_consent'); } catch (e) {}
+
+    if (escolha === 'accepted') {
+      window.__granvicLoadMetaPixel();
+      return;
+    }
+    if (escolha === 'rejected') return;
+
+    var banner = document.getElementById('banner-cookies');
+    var aceitar = document.getElementById('cookies-aceitar');
+    var rejeitar = document.getElementById('cookies-rejeitar');
+    if (!banner) return;
+    banner.classList.remove('hidden');
+
+    aceitar?.addEventListener('click', function () {
+      try { localStorage.setItem('granvic_cookie_consent', 'accepted'); } catch (e) {}
+      banner.classList.add('hidden');
+      window.__granvicLoadMetaPixel();
+    });
+    rejeitar?.addEventListener('click', function () {
+      try { localStorage.setItem('granvic_cookie_consent', 'rejected'); } catch (e) {}
+      banner.classList.add('hidden');
+    });
+  })();
+</script>
