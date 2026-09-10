@@ -94,6 +94,15 @@ export const FORM_ENDPOINT: string | null = 'https://script.google.com/macros/s/
 export const META_PIXEL_ID: string | null = '4447663178846190';
 
 /**
+ * Google Tag Manager — container que vai hospedar tags de medição/publicidade
+ * (Google Analytics, Google Ads, etc.). Recebido do Gustavo em 10/09 (D-041).
+ * Mesmo tratamento do Meta Pixel: só carrega após consentimento do visitante
+ * em BannerCookies.astro — o próprio GTM não decide isso sozinho.
+ * `null` desativa o container em todas as páginas.
+ */
+export const GTM_ID: string | null = 'GTM-M8JF97BF';
+
+/**
  * Agendamento — widget de calendário embutido em /agendar (Cal.com).
  * ⚠️ A CONFIRMAR — crie uma conta gratuita em https://cal.com, crie um tipo
  * de evento (ex.: "Primeira Conversa — 30min") e cole aqui o `calLink`

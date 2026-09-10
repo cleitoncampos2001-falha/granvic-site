@@ -1,9 +1,9 @@
 ---
 /**
- * PREFERÊNCIAS DE COOKIES — atualizada 10/09 (D-040) quando o Meta Pixel
- * entrou no site. Antes disso, o site só usava cookies estritamente
- * necessários; agora usa também cookie de medição/publicidade (Meta Pixel),
- * sob consentimento via BannerCookies.astro (localStorage
+ * PREFERÊNCIAS DE COOKIES — atualizada 10/09 (D-040, Meta Pixel; D-041,
+ * Google Tag Manager). Antes disso, o site só usava cookies estritamente
+ * necessários; agora usa também cookies de medição/publicidade (Meta Pixel
+ * e GTM), sob consentimento via BannerCookies.astro (localStorage
  * `granvic_cookie_consent`). Esta página deixa o visitante trocar a escolha
  * a qualquer momento, como a Política de Privacidade §10 promete.
  */
@@ -21,7 +21,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         Preferências de Cookies
       </h1>
       <p class="mt-7 text-lg text-petroleo-soft leading-relaxed">
-        Este site usa cookies estritamente necessários sempre — sem eles, o site não funciona. Também usamos um cookie de medição/publicidade (Meta Pixel, para entender e melhorar nossos anúncios) — esse só é ativado com a sua permissão, dada no banner que aparece na sua primeira visita.
+        Este site usa cookies estritamente necessários sempre — sem eles, o site não funciona. Também usamos cookies de medição/publicidade (Meta Pixel e Google Tag Manager, para entender e melhorar nossos anúncios e nossa análise de audiência) — esses só são ativados com a sua permissão, dada no banner que aparece na sua primeira visita.
       </p>
 
       <div id="pref-status" class="mt-8 rounded-2xl border border-linha bg-white/40 p-6">

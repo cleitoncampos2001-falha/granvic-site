@@ -1,20 +1,23 @@
 ---
 /**
- * Banner de consentimento de cookies (10/09, D-040).
+ * Banner de consentimento de cookies (10/09, D-040; estendido D-041 p/ GTM).
  * A Política de Privacidade §10 já promete: cookies não-essenciais só
  * ativam após escolha do visitante. Como o Meta Pixel entrou nesta mesma
  * sessão, o banner tem que existir ANTES do pixel disparar de verdade —
- * senão o site descumpre a própria política publicada.
+ * senão o site descumpre a própria política publicada. Google Tag Manager
+ * entrou depois (D-041) com o mesmo tratamento: um único consentimento
+ * libera as duas ferramentas, não dois banners.
  * Escolha do visitante fica em localStorage (`granvic_cookie_consent`:
  * "accepted" | "rejected"). Simplificado a 2 opções (Aceitar / Rejeitar
- * não essenciais) em vez de personalização por categoria — hoje só existe
- * 1 ferramenta não essencial (Meta Pixel), granularidade por categoria
- * fica pra quando houver mais de uma.
+ * não essenciais) em vez de personalização por categoria — granularidade
+ * por categoria fica pra quando as ferramentas tiverem propósitos distintos
+ * o bastante pra justificar escolha separada.
  */
-import { META_PIXEL_ID } from '../config/site';
+import { META_PIXEL_ID, GTM_ID } from '../config/site';
+const temFerramentaNaoEssencial = META_PIXEL_ID || GTM_ID;
 ---
 
-{META_PIXEL_ID && (
+{temFerramentaNaoEssencial && (
   <div
     id="banner-cookies"
     class="fixed inset-x-0 bottom-0 z-50 hidden border-t border-linha bg-offwhite/98 backdrop-blur-sm shadow-[0_-4px_20px_rgba(0,0,0,0.08)]"
@@ -35,8 +38,8 @@ import { META_PIXEL_ID } from '../config/site';
   </div>
 )}
 
-<script define:vars={{ META_PIXEL_ID }} is:inline>
-  window.__granvicLoadMetaPixel = function () {
+<script define:vars={{ META_PIXEL_ID, GTM_ID }} is:inline>
+  function carregarMetaPixel() {
     if (!META_PIXEL_ID || window.fbq) return;
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -52,15 +55,37 @@ import { META_PIXEL_ID } from '../config/site';
     img.height = 1; img.width = 1; img.style.display = 'none';
     img.src = 'https://www.facebook.com/tr?id=' + META_PIXEL_ID + '&ev=PageView&noscript=1';
     document.body.appendChild(img);
+  }
+
+  function carregarGTM() {
+    if (!GTM_ID || window.__granvicGtmCarregado) return;
+    window.__granvicGtmCarregado = true;
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer',GTM_ID);
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://www.googletagmanager.com/ns.html?id=' + GTM_ID;
+    iframe.height = 0; iframe.width = 0;
+    iframe.style.display = 'none'; iframe.style.visibility = 'hidden';
+    document.body.appendChild(iframe);
+  }
+
+  window.__granvicLoadFerramentasNaoEssenciais = function () {
+    carregarMetaPixel();
+    carregarGTM();
   };
+  // mantido por compatibilidade — quem chamava só o Pixel agora ativa as duas
+  window.__granvicLoadMetaPixel = window.__granvicLoadFerramentasNaoEssenciais;
 
   (function () {
-    if (!META_PIXEL_ID) return;
+    if (!META_PIXEL_ID && !GTM_ID) return;
     var escolha = null;
     try { escolha = localStorage.getItem('granvic_cookie_consent'); } catch (e) {}
 
     if (escolha === 'accepted') {
-      window.__granvicLoadMetaPixel();
+      window.__granvicLoadFerramentasNaoEssenciais();
       return;
     }
     if (escolha === 'rejected') return;
@@ -74,7 +99,7 @@ import { META_PIXEL_ID } from '../config/site';
     aceitar?.addEventListener('click', function () {
       try { localStorage.setItem('granvic_cookie_consent', 'accepted'); } catch (e) {}
       banner.classList.add('hidden');
-      window.__granvicLoadMetaPixel();
+      window.__granvicLoadFerramentasNaoEssenciais();
     });
     rejeitar?.addEventListener('click', function () {
       try { localStorage.setItem('granvic_cookie_consent', 'rejected'); } catch (e) {}
