@@ -37,7 +37,7 @@ export const JURIDICO = {
  * Enquanto null, os CTAs de WhatsApp ficam desabilitados (não geram link quebrado).
  */
 export const WHATSAPP = {
-  numero: '5531982581295' as string | null, // provisório (gestor) — trocar pelo oficial depois
+  numero: '5531997374560' as string | null, // oficial GRANVIC (gestor, 15/09)
   // Mensagens pré-preenchidas por origem (Mapa §7.2).
   mensagens: {
     home:
