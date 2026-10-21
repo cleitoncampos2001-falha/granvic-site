@@ -37,7 +37,7 @@ export const JURIDICO = {
  * Enquanto null, os CTAs de WhatsApp ficam desabilitados (não geram link quebrado).
  */
 export const WHATSAPP = {
-  numero: '5531997374560' as string | null, // oficial GRANVIC (gestor, 15/09)
+  numero: '5531992530148' as string | null, // oficial GRANVIC (gestor, 16/10)
   // Mensagens pré-preenchidas por origem (Mapa §7.2).
   mensagens: {
     home:
@@ -56,7 +56,7 @@ export const WHATSAPP = {
 export const REDES = {
   instagram: {
     label: 'Instagram',
-    url: 'https://www.instagram.com/granvicoficial',
+    url: 'https://www.instagram.com/granvic.oficial',
     ativo: true,
   },
   linkedin: {
