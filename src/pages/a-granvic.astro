@@ -24,12 +24,14 @@ const liderancas = [
     papel: 'Estratégia, tecnologia, marketing e institucional',
     historia:
       'Mais de duas décadas no mercado de consórcio e na construção de patrimônio. À frente da estratégia, da tecnologia e da marca da GRANVIC.',
+    foto: '/imagens/lideranca-cleiton.jpg',
   },
   {
     nome: 'Itamar Campos',
     papel: 'Operações, administradoras e comercial',
     historia:
       'Mais de três décadas no mercado de consórcio. Conduz as operações, a relação com as administradoras e a área comercial.',
+    foto: '/imagens/lideranca-itamar.jpg',
   },
 ];
 ---
@@ -100,25 +102,36 @@ const liderancas = [
         {
           liderancas.map((s) => (
             <article class="flex gap-6 rounded-2xl border border-linha bg-white/40 p-6">
-              {/* Retrato de TESTE (silhueta) — substituir por foto editorial 4:5 */}
-              <div
-                class="relative shrink-0 w-28 rounded-xl overflow-hidden"
-                style="aspect-ratio:4/5;background:linear-gradient(160deg,#1b4a5e,#0f2d3e)"
-                aria-label={`Foto de ${s.nome} — imagem de teste`}
-              >
-                <svg viewBox="0 0 80 100" preserveAspectRatio="xMidYMax slice" class="absolute inset-0 h-full w-full" aria-hidden="true">
-                  <g fill="#f5f0e8" opacity="0.82">
-                    <circle cx="40" cy="40" r="15" />
-                    <path d="M12 100 C12 76 26 64 40 64 C54 64 68 76 68 100 Z" />
-                  </g>
-                </svg>
-                <span class="absolute inset-x-0 bottom-1.5 text-center text-[9px] uppercase tracking-wider text-offwhite/60">foto de teste</span>
-              </div>
+              {s.foto ? (
+                <img
+                  src={s.foto}
+                  alt={`Retrato de ${s.nome}`}
+                  width="640"
+                  height="800"
+                  loading="lazy"
+                  class="shrink-0 w-28 rounded-xl object-cover"
+                  style="aspect-ratio:4/5"
+                />
+              ) : (
+                <div
+                  class="relative shrink-0 w-28 rounded-xl overflow-hidden"
+                  style="aspect-ratio:4/5;background:linear-gradient(160deg,#1b4a5e,#0f2d3e)"
+                  aria-label={`Foto de ${s.nome} — imagem de teste`}
+                >
+                  <svg viewBox="0 0 80 100" preserveAspectRatio="xMidYMax slice" class="absolute inset-0 h-full w-full" aria-hidden="true">
+                    <g fill="#f5f0e8" opacity="0.82">
+                      <circle cx="40" cy="40" r="15" />
+                      <path d="M12 100 C12 76 26 64 40 64 C54 64 68 76 68 100 Z" />
+                    </g>
+                  </svg>
+                  <span class="absolute inset-x-0 bottom-1.5 text-center text-[9px] uppercase tracking-wider text-offwhite/60">foto de teste</span>
+                </div>
+              )}
               <div>
                 <h3 class="font-display text-xl font-medium text-petroleo">{s.nome}</h3>
                 <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-ouro">{s.papel}</p>
                 <p class="mt-3 text-[15px] leading-relaxed text-petroleo-soft">{s.historia}</p>
-                <p class="mt-2 text-[11px] italic text-petroleo-soft/50">Texto e foto de exemplo — a confirmar.</p>
+                <p class="mt-2 text-[11px] italic text-petroleo-soft/50">{s.foto ? 'Texto de exemplo — a confirmar.' : 'Texto e foto de exemplo — a confirmar.'}</p>
               </div>
             </article>
           ))
