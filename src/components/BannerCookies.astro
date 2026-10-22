@@ -13,8 +13,8 @@
  * por categoria fica pra quando as ferramentas tiverem propósitos distintos
  * o bastante pra justificar escolha separada.
  */
-import { META_PIXEL_ID, GTM_ID, GA_MEASUREMENT_ID } from '../config/site';
-const temFerramentaNaoEssencial = META_PIXEL_ID || GTM_ID || GA_MEASUREMENT_ID;
+import { META_PIXEL_ID, GTM_ID, GA_MEASUREMENT_ID, RD_STATION_LOADER } from '../config/site';
+const temFerramentaNaoEssencial = META_PIXEL_ID || GTM_ID || GA_MEASUREMENT_ID || RD_STATION_LOADER;
 ---
 
 {temFerramentaNaoEssencial && (
@@ -38,7 +38,7 @@ const temFerramentaNaoEssencial = META_PIXEL_ID || GTM_ID || GA_MEASUREMENT_ID;
   </div>
 )}
 
-<script define:vars={{ META_PIXEL_ID, GTM_ID, GA_MEASUREMENT_ID }} is:inline>
+<script define:vars={{ META_PIXEL_ID, GTM_ID, GA_MEASUREMENT_ID, RD_STATION_LOADER }} is:inline>
   function carregarMetaPixel() {
     if (!META_PIXEL_ID || window.fbq) return;
     !function(f,b,e,v,n,t,s)
@@ -85,16 +85,27 @@ const temFerramentaNaoEssencial = META_PIXEL_ID || GTM_ID || GA_MEASUREMENT_ID;
     window.gtag('config', GA_MEASUREMENT_ID);
   }
 
+  function carregarRDStation() {
+    if (!RD_STATION_LOADER || window.__granvicRdCarregado) return;
+    window.__granvicRdCarregado = true;
+    var tag = document.createElement('script');
+    tag.type = 'text/javascript';
+    tag.async = true;
+    tag.src = RD_STATION_LOADER;
+    document.body.appendChild(tag);
+  }
+
   window.__granvicLoadFerramentasNaoEssenciais = function () {
     carregarMetaPixel();
     carregarGTM();
     carregarGA4();
+    carregarRDStation();
   };
   // mantido por compatibilidade — quem chamava só o Pixel agora ativa as duas
   window.__granvicLoadMetaPixel = window.__granvicLoadFerramentasNaoEssenciais;
 
   (function () {
-    if (!META_PIXEL_ID && !GTM_ID && !GA_MEASUREMENT_ID) return;
+    if (!META_PIXEL_ID && !GTM_ID && !GA_MEASUREMENT_ID && !RD_STATION_LOADER) return;
     var escolha = null;
     try { escolha = localStorage.getItem('granvic_cookie_consent'); } catch (e) {}
 

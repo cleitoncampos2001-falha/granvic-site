@@ -112,6 +112,16 @@ export const GTM_ID: string | null = 'GTM-M8JF97BF';
 export const GA_MEASUREMENT_ID: string | null = 'G-B36V7VS8XT';
 
 /**
+ * RD Station — script de rastreamento (loader) que monitora visitas e
+ * identifica leads (D-047). Mesmo tratamento das demais ferramentas: só
+ * carrega após consentimento em BannerCookies.astro. Por isso a verificação
+ * de instalação do RD só enxerga o script depois que o visitante aceita.
+ * `null` desativa em todas as páginas.
+ */
+export const RD_STATION_LOADER: string | null =
+  'https://d335luupugsy2.cloudfront.net/js/loader-scripts/3ca761a1-26a3-487e-ae51-c0b2ae17d730-loader.js';
+
+/**
  * Agendamento — widget de calendário embutido em /agendar (Cal.com).
  * ⚠️ A CONFIRMAR — crie uma conta gratuita em https://cal.com, crie um tipo
  * de evento (ex.: "Primeira Conversa — 30min") e cole aqui o `calLink`
