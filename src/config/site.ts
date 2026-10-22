@@ -103,6 +103,15 @@ export const META_PIXEL_ID: string | null = '4447663178846190';
 export const GTM_ID: string | null = 'GTM-M8JF97BF';
 
 /**
+ * Google Analytics 4 (tag gtag.js direta) — ID de medição recebido em 22/10
+ * (D-045). Mesmo tratamento do Pixel e do GTM: só carrega após consentimento.
+ * ATENÇÃO: se a agência também configurar o GA4 dentro do GTM com este mesmo
+ * ID, cada página será contada em dobro — manter só um dos dois caminhos.
+ * `null` desativa em todas as páginas.
+ */
+export const GA_MEASUREMENT_ID: string | null = 'G-B36V7VS8XT';
+
+/**
  * Agendamento — widget de calendário embutido em /agendar (Cal.com).
  * ⚠️ A CONFIRMAR — crie uma conta gratuita em https://cal.com, crie um tipo
  * de evento (ex.: "Primeira Conversa — 30min") e cole aqui o `calLink`
